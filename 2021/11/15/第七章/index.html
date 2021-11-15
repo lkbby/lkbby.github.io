@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第七章 | ┭┮﹏┭┮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第七章	单片机的串行通信技术  7.1 串行通信概述  7.1.1 并行通信和串行通信 1、并行方式 数据的各位同时发送或同时接收  特点： 传送速度快，但需要多根传输线，故一般只在近距离通信中使用 2、串行方式 数据的各位依次逐位发送或接收  特点： 传输速度慢，但因只需较少的传输线，故适合于远距离通信 3、传输形式 按照传输的数据流向分： 单工制式：通信线的一端为发送器（TXD），一端为接收">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第七章">
+<meta property="og:url" content="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/index.html">
+<meta property="og:site_name" content="┭┮﹏┭┮">
+<meta property="og:description" content="第七章	单片机的串行通信技术  7.1 串行通信概述  7.1.1 并行通信和串行通信 1、并行方式 数据的各位同时发送或同时接收  特点： 传送速度快，但需要多根传输线，故一般只在近距离通信中使用 2、串行方式 数据的各位依次逐位发送或接收  特点： 传输速度慢，但因只需较少的传输线，故适合于远距离通信 3、传输形式 按照传输的数据流向分： 单工制式：通信线的一端为发送器（TXD），一端为接收">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/hIvXpBfFr4QxYu7.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/VWE4qitao2J9d7F.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/1G5aWRYvNU9LgxT.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/ArcifeXGQmR8n1N.png">
+<meta property="og:image" content="c:%5CUsers%5C86151%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211115211826870.png">
+<meta property="article:published_time" content="2021-11-15T11:51:02.000Z">
+<meta property="article:modified_time" content="2021-11-15T13:23:30.549Z">
+<meta property="article:author" content="叁墨">
+<meta property="article:tag" content="复习">
+<meta property="article:tag" content="概念">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/11/15/hIvXpBfFr4QxYu7.png">
+  
+    <link rel="alternate" href="/atom.xml" title="┭┮﹏┭┮" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://i.loli.net/2021/11/03/HfJstrbNocMR12X.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+	   
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-第七章" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-15T11:51:02.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第七章
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第七章单片机的串行通信技术"><a class="markdownIt-Anchor" href="#第七章单片机的串行通信技术"></a> 第七章	单片机的串行通信技术</h1>
+<h2 id="71-串行通信概述"><a class="markdownIt-Anchor" href="#71-串行通信概述"></a> 7.1 串行通信概述</h2>
+<h3 id="711-并行通信和串行通信"><a class="markdownIt-Anchor" href="#711-并行通信和串行通信"></a> 7.1.1 并行通信和串行通信</h3>
+<p><strong>1、并行方式</strong></p>
+<p>数据的各位同时发送或同时接收</p>
+<p><img src="https://i.loli.net/2021/11/15/hIvXpBfFr4QxYu7.png" alt="image-20211115210638401" /></p>
+<p><strong>特点</strong>：</p>
+<p>传送速度快，但需要多根传输线，故一般只在近距离通信中使用</p>
+<p><strong>2、串行方式</strong></p>
+<p>数据的各位依次逐位发送或接收</p>
+<p><img src="https://i.loli.net/2021/11/15/VWE4qitao2J9d7F.png" alt="image-20211115210829346" /></p>
+<p><strong>特点：</strong></p>
+<p>传输速度慢，但因只需较少的传输线，故适合于远距离通信</p>
+<p><strong>3、传输形式</strong></p>
+<p>按照传输的数据流向分：</p>
+<p>单工制式：通信线的一端为发送器（TXD），一端为接收器（RXD），数据只能按照一个固定的方向传送</p>
+<p>半双工制式：系统由一个TXD和一个RXD组成，但不能同时在两个方向上传送，收发开关由软件方式切换</p>
+<p>全双工制式：通信系统每端都有TXD和RXD，可以同时发送和接收，即数据可以在两个方向上同时传送</p>
+<h3 id="712-波特率"><a class="markdownIt-Anchor" href="#712-波特率"></a> 7.1.2 波特率</h3>
+<p>在串行通信的数据是按位进行传送的，数据传输速率用波特率指标衡量</p>
+<p>波特率：每秒发送二进制数码的位数，即bps（位/秒）</p>
+<p>串行通信的收发双方必须采用相同的波特率</p>
+<h3 id="713-异步通信和同步通信"><a class="markdownIt-Anchor" href="#713-异步通信和同步通信"></a> 7.1.3 异步通信和同步通信</h3>
+<p><strong>1、异步通信</strong></p>
+<p>——以字符为单位组成字符帧进行的数据传送。</p>
+<p><img src="https://i.loli.net/2021/11/15/1G5aWRYvNU9LgxT.png" alt="image-20211115211350622" /></p>
+<p>一帧数据由起始位、数据位、[可编程位]和停止位构成</p>
+<p><strong>起始位</strong>：位于数据帧开头，占1位，始终为低电平，用于向接收设备表示发送端开始发送1帧数据。<br />
+<strong>数据位</strong>：要传输的数据信息，可以是字符或数据，一般为5～8位，由低位到高位依次传送。<br />
+<strong>可编程位</strong>：位于数据位之后，占1位，用于发送数据的校验，或传送多机串行通信的联络信息。<br />
+<strong>停止位</strong>：位于数据位末尾，占1位，始终为高电平，用于向接收端表示1帧数据已发送完毕。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>对收发双方的时钟精度要求较低（收发双方不同步时，能依靠在每帧开始时的不断对齐，自行纠正偏差）</li>
+<li>传送速度较低（每个字节都要建立一次同步）</li>
+</ul>
+<p><strong>2、同步通信</strong></p>
+<p>——数据以块为单位进行的数据传送</p>
+<p><img src="https://i.loli.net/2021/11/15/ArcifeXGQmR8n1N.png" alt="image-20211115211545495" /></p>
+<p>在发一组数据时，只在开始用若干个同步字符作为双方的号令，然后连续发送整组数据。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>传输效率高（以数据块为单位连续传送，数据结构紧凑）</li>
+<li>对通信硬件要求高（要求双方有准确的时钟）</li>
+</ul>
+<p>本章不讨论同步通信问题</p>
+<h2 id="72-mcs-51的串口控制器"><a class="markdownIt-Anchor" href="#72-mcs-51的串口控制器"></a> 7.2 MCS-51的串口控制器</h2>
+<h3 id="721-串行口内部结构"><a class="markdownIt-Anchor" href="#721-串行口内部结构"></a> 7.2.1 串行口内部结构</h3>
+<p><img src="C:%5CUsers%5C86151%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211115211826870.png" alt="image-20211115211826870" /></p>
+<p><strong>MCS-51内部有1个可编程的全双工串行通信接口</strong>，可以作为通用异步接收/发送器（UART），也可作为同步移位寄存器。通过引脚RXD（P3.0）和TXD（P3.1）与外界进行通信。</p>
+<p><strong>2个数据缓冲器SBUF在物理上是相互独立的</strong>，一个用于发送数据（SBUF发）、一个用于接收数据（SBUF收）。2个SBUF共用一个地址（99H），通过读写指令区别是对哪个SUBF的操作。</p>
+<p><strong>发送控制器</strong>的作用是在门电路和定时器T1的配合下，将SBUF发中的并行数据转为串行数据，并自动添加起始位、可编程位、停止位。这一过程结束后自动使发送中断请求标志位TI置1，用以通知CPU已将SBUF发中的数据输出到了TXD引脚。</p>
+<p><strong>接收控制器</strong>的作用是在输入移位寄存器和定时器T1的配合下,使来自RXD引脚的串行数据转为并行数据，并自动过滤掉起始位、可编程位、停止位。这一过程结束后自动使接收中断请求标志位RI置1，用以通知CPU接收的数据已存入SBUF收。</p>
+<p><strong>定时器T1</strong>的作用是产生用以收发过程中节拍控制的通信时钟。发送数据时，通信时钟的下降沿对应于数据移位输出；接收数据时，通信时钟的上升沿对应于数据位采样。通信时钟频率（波特率）由定时器的控制寄存器管理。</p>
+<p>**RXD（P3.0）和TXD（P3.1）**用于串行信号或时钟信号的传入或传出。</p>
+<h3 id="722-串行口控制寄存器"><a class="markdownIt-Anchor" href="#722-串行口控制寄存器"></a> 7.2.2 串行口控制寄存器</h3>
+<p><strong>1、串行数据缓冲器，SBUF</strong></p>
+<p><strong>2、串口控制寄存器，SCON</strong></p>
+<p><strong>3、电源控制寄存器，PCON</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/" data-id="ckw0pbgjb0008ak4xhmf4eylk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/11/15/%E7%AC%AC%E5%85%AD%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">第六章</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">┭┮﹏┭┮</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>主题链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+		  <script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard.min.js"></script>
+		<script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard-use.js"></script> 
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 叁墨<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

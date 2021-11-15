@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第二章——MCS单片机结构及原理 | ┭┮﹏┭┮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第二章  2.1MCS-51单片机结构  SCM——将通用微计算机基本功能部件集成在一块芯片上构成的一种专用微计算机系统。 SCM &#x3D; CPU+程序存储器+数据存储器+定时器&#x2F;计数器+内外中断+可编程I&#x2F;O+可编程全双工串行口+…  2.1.1 CPU   1、程序计数器（PC） ——指向ROM存储单元的地址指针（引导程序运行）  永远存放着下一条指令的首地址 具有16位字长→可寻址范围216（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二章——MCS单片机结构及原理">
+<meta property="og:url" content="http://lkbby.github.io/2021/11/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0/index.html">
+<meta property="og:site_name" content="┭┮﹏┭┮">
+<meta property="og:description" content="第二章  2.1MCS-51单片机结构  SCM——将通用微计算机基本功能部件集成在一块芯片上构成的一种专用微计算机系统。 SCM &#x3D; CPU+程序存储器+数据存储器+定时器&#x2F;计数器+内外中断+可编程I&#x2F;O+可编程全双工串行口+…  2.1.1 CPU   1、程序计数器（PC） ——指向ROM存储单元的地址指针（引导程序运行）  永远存放着下一条指令的首地址 具有16位字长→可寻址范围216（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/11/05/ElMAQWtesInpuXv.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/iJPlgTELSwn4vX9.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/NjfQGOkFDcIiyb3.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/nGd9t8olJ5UfubB.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/l7ptgIifQKkBLZ9.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/Xf12tMTBZGDa63N.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/d8f5ibjNTcnQeAE.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/eZBC5Pa4s9hcyfo.png">
+<meta property="article:published_time" content="2021-11-04T16:26:56.000Z">
+<meta property="article:modified_time" content="2021-11-15T10:24:37.067Z">
+<meta property="article:author" content="叁墨">
+<meta property="article:tag" content="复习">
+<meta property="article:tag" content="概念">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/11/05/ElMAQWtesInpuXv.png">
+  
+    <link rel="alternate" href="/atom.xml" title="┭┮﹏┭┮" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://i.loli.net/2021/11/03/HfJstrbNocMR12X.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+	   
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-第二章" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-04T16:26:56.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">05</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第二章——MCS单片机结构及原理
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第二章"><a class="markdownIt-Anchor" href="#第二章"></a> 第二章</h1>
+<h2 id="21mcs-51单片机结构"><a class="markdownIt-Anchor" href="#21mcs-51单片机结构"></a> 2.1MCS-51单片机结构</h2>
+<p><img src="https://i.loli.net/2021/11/05/ElMAQWtesInpuXv.png" alt="image-20211105003127814" /></p>
+<p>SCM——将通用微计算机基本功能部件集成在一块芯片上构成的一种专用微计算机系统。</p>
+<p>SCM = CPU+程序存储器+数据存储器+定时器/计数器+内外中断+可编程I/O+可编程全双工串行口+…</p>
+<h3 id="211-cpu"><a class="markdownIt-Anchor" href="#211-cpu"></a> 2.1.1 CPU</h3>
+<p><img src="https://i.loli.net/2021/11/15/iJPlgTELSwn4vX9.png" alt="image-20211115160603713" /></p>
+<h4 id="1-程序计数器pc"><a class="markdownIt-Anchor" href="#1-程序计数器pc"></a> 1、程序计数器（PC）</h4>
+<p>——指向ROM存储单元的地址指针（引导程序运行）</p>
+<ul>
+<li>永远存放着下一条指令的首地址</li>
+<li>具有16位字长→可寻址范围216（= 65536字节= 64KB）</li>
+<li>具有自动加“1” 功能→顺序运行程序功能</li>
+<li>具有可被指令修改功能→跳转运行程序功能</li>
+<li>复位时，PC初值=0 →复位后程序从0开始运行</li>
+</ul>
+<h4 id="2-数据指针寄存器dptr"><a class="markdownIt-Anchor" href="#2-数据指针寄存器dptr"></a> 2、数据指针寄存器（DPTR）</h4>
+<p>——指向ROM或RAM存储单元的地址指针（引导数据传送）</p>
+<ul>
+<li>具有16位字长，可寻址范围216（64KB）</li>
+<li>具有可被指令修改功能→可变更数据地址</li>
+<li>可拆为2个8位的独立寄存器DPL和DPH</li>
+</ul>
+<h4 id="3-累加器a"><a class="markdownIt-Anchor" href="#3-累加器a"></a> 3、累加器（A）</h4>
+<p>——存放操作数或中间运算结果的寄存器</p>
+<ul>
+<li>具有8位字长</li>
+<li>是利用率最高的寄存器</li>
+<li>具有可被指令修改功能</li>
+</ul>
+<h4 id="4-程序状态寄存器psw"><a class="markdownIt-Anchor" href="#4-程序状态寄存器psw"></a> 4、程序状态寄存器（PSW）</h4>
+<p>——存放程序运行过程中的各种状态信息的寄存器</p>
+<p><img src="https://i.loli.net/2021/11/15/NjfQGOkFDcIiyb3.png" alt="image-20211115161427291" /></p>
+<ul>
+<li>具有8位字长</li>
+<li>各位都具有特殊含义</li>
+<li>状态信息通常自动形成，但也可用指令修改</li>
+</ul>
+<p><strong>CY（PSW.7）：进位标志</strong></p>
+<p>在进行<strong>加或减</strong>运算时，如果操作结果最高位有进位或借位时，CY由<strong>硬件</strong>置“1”，否则清“0” 。</p>
+<p><strong>用途：</strong></p>
+<p>1、根据CY判断有无进位或借位；<br />
+2、在位操作中CY可作为位累加器用。</p>
+<p><strong>AC（PSW.6）：辅助进位标志</strong></p>
+<p>在进行<strong>加或减</strong>运算时，如果操作结果的低四位数向高四位产生进位或借位时，将由<strong>硬件</strong>置“1”，否则清“0”。</p>
+<p><strong>用途：</strong></p>
+<p>1、根据AC判断加减运算时有无半进位或半借位；<br />
+2、在BCD码调整运算中要用到AC标志</p>
+<p><strong>F0（PSW.5）和F1（PSW.1）：用户标志位</strong></p>
+<p>可作为用户自行定义的一个状态标记</p>
+<p>RS1（PSW.4）和RS0（PSW.3）：工作寄存器指针</p>
+<p><strong>用途：</strong></p>
+<p>用于指定CPU的当前工作寄存器组</p>
+<p><strong>OV（PSW.2）：溢出标志</strong></p>
+<p>在有符号数加减运算或无符号数乘除运算中若有异常结果，OV硬件置1，否则硬件清0。</p>
+<p><strong>用途：</strong></p>
+<p>判断运算的结果是否正确，正确 = 0；出错 = 1</p>
+<p><strong>P（PSW.0）：奇偶标志位</strong></p>
+<p>该位始终跟踪累加器A中含“1”个数的奇偶性，如果A中有奇数个“1”，则P置“1”，否则置“0”</p>
+<p><strong>举例 ：</strong></p>
+<p>若A =1001 1111，则P=0<br />
+若A =1100 0001，则P=1</p>
+<p><strong>用途：</strong></p>
+<p>用于串行通讯中的数据校验，判断是否存在传输错误。</p>
+<h3 id="212-mcs-51引脚"><a class="markdownIt-Anchor" href="#212-mcs-51引脚"></a> 2.1.2 MCS-51引脚</h3>
+<p><img src="https://i.loli.net/2021/11/15/nGd9t8olJ5UfubB.png" alt="image-20211115163031063" /></p>
+<h2 id="22-mcs-51的存储器结构"><a class="markdownIt-Anchor" href="#22-mcs-51的存储器结构"></a> 2.2 MCS-51的存储器结构</h2>
+<h3 id="221存储器划分方法"><a class="markdownIt-Anchor" href="#221存储器划分方法"></a> 2.2.1存储器划分方法</h3>
+<p>计算机存储器地址空间的两种结构形式：<strong>普林斯顿结构</strong>和<strong>哈佛结构</strong></p>
+<table>
+<thead>
+<tr>
+<th><img src="https://i.loli.net/2021/11/15/l7ptgIifQKkBLZ9.png" alt="image-20211115163541140" /></th>
+<th><img src="https://i.loli.net/2021/11/15/Xf12tMTBZGDa63N.png" alt="image-20211115163610212" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAM和ROM统一编址</td>
+<td>RAM和ROM分别编址</td>
+</tr>
+</tbody>
+</table>
+<p>51系列单片机采用哈佛结构，共有4个物理存储空间：片内RAM、片内ROM、片外RAM、片内ROM</p>
+<h3 id="222程序存储器rom"><a class="markdownIt-Anchor" href="#222程序存储器rom"></a> 2.2.2程序存储器（ROM）</h3>
+<p>作用：存放程序、表格、或常数，具有非易失性</p>
+<p>特点：片内ROM与片外ROM统一编址（&gt;4KB时用片外ROM）</p>
+<p><strong>ROM的6个特殊存储器单元——引导程序跳转</strong></p>
+<p>**0000H：**复位后程序自动运行的首地址</p>
+<p>**0003H：**外部中断0入口地址</p>
+<p>**000BH：**定时器0溢出中断入口地址</p>
+<p>**0013H：**外部中断1入口地址</p>
+<p>**001BH：**定时器0一处中断入口地址</p>
+<p>**0023H：**串行口中断入口地址</p>
+<p>程序一般安排在0030H地址以后</p>
+<h3 id="223片内数据存储器ram"><a class="markdownIt-Anchor" href="#223片内数据存储器ram"></a> 2.2.3片内数据存储器（RAM）</h3>
+<p>作用：存放程序运行结果</p>
+<p>字长：8位</p>
+<p>数量：128B+128B（80C51）</p>
+<p>低128B（ 00H～7FH ）为普通RAM区<br />
+高128B （80H～FFH）为特殊功能寄存器区（SFR）<strong>SFR承担着51单片机内部资源的管理工作</strong></p>
+<p><img src="https://i.loli.net/2021/11/15/d8f5ibjNTcnQeAE.png" alt="image-20211115164914090" /></p>
+<p><img src="https://i.loli.net/2021/11/15/eZBC5Pa4s9hcyfo.png" alt="image-20211115171532708" /></p>
+<h2 id="23单片机的复位-时钟与时序"><a class="markdownIt-Anchor" href="#23单片机的复位-时钟与时序"></a> 2.3单片机的复位、时钟与时序</h2>
+<h3 id="231复位"><a class="markdownIt-Anchor" href="#231复位"></a> 2.3.1复位</h3>
+<p>复位——使单片机恢复<strong>原始默认状态</strong>的操作。</p>
+<h3 id="232时钟"><a class="markdownIt-Anchor" href="#232时钟"></a> 2.3.2时钟</h3>
+<p>CPU的微操作必须在统一的时钟控制下才能正确进行, 需要通过单片机引脚接入<strong>晶振元件</strong>或<strong>外部时钟</strong></p>
+<h3 id="233时序"><a class="markdownIt-Anchor" href="#233时序"></a> 2.3.3时序</h3>
+<ul>
+<li>
+<p>时序是指按照时间顺序显示的对象（或引脚、事件、信息）序列关系。</p>
+</li>
+<li>
+<p>时序可以用状态方程、状态图、状态表和时序图4种方法表示，其中时序图最为常用。</p>
+</li>
+<li>
+<p>时序图亦称为波形图或序列图，纵坐标表示不同对象的电平，横坐标表示时间（从左往右为时间正向轴），通常坐标轴都省略。</p>
+</li>
+<li>
+<p>1个状态周期（S）= 2个节拍（P）</p>
+</li>
+<li>
+<p>1个机器周期 = 6个状态（S） =12个节拍（P）</p>
+</li>
+<li>
+<p>1个指令周期约为1～4个机器周期</p>
+</li>
+</ul>
+<h2 id="24并行io口"><a class="markdownIt-Anchor" href="#24并行io口"></a> 2.4并行I/O口</h2>
+<p><em>P0~P3并行口的基本用途</em></p>
+<p>1、可作为并行IO输入通道</p>
+<p>2、可作为并行IO输出通道</p>
+<p>3、可作为外部设备的连接通道</p>
+<p>4、可作为穿行通信通道</p>
+<h3 id="241-p1口"><a class="markdownIt-Anchor" href="#241-p1口"></a> 2.4.1 P1口</h3>
+<p>P1口包含P1.0~P1.7共8个相同结构的电路</p>
+<p>P1.0~P1.7中的8个锁存器组成P1 SFR（90H）</p>
+<h3 id="242-p3口"><a class="markdownIt-Anchor" href="#242-p3口"></a> 2.4.2 P3口</h3>
+<p>P3拥有第二功能控制单元</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">引脚</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:left">第二功能定义</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">P3.0</td>
+<td style="text-align:center">RXD</td>
+<td style="text-align:left">串行通信数据接收端</td>
+<td style="text-align:center">输入</td>
+</tr>
+<tr>
+<td style="text-align:center">P3.1</td>
+<td style="text-align:center">TXD</td>
+<td style="text-align:left">串行通信数据发送端</td>
+<td style="text-align:center"><strong>输出</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">P3.2</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>I</mi><mi>N</mi><mi>T</mi><mtext> </mtext><mn>0</mn><mtext> </mtext></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{INT~0~}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace nobreak"> </span><span class="mord">0</span><span class="mspace nobreak"> </span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">外部中断0请求端口</td>
+<td style="text-align:center">输入</td>
+</tr>
+<tr>
+<td style="text-align:center">P3.3</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>I</mi><mi>N</mi><mi>T</mi><mtext> </mtext><mn>1</mn><mtext> </mtext></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{INT~1~}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace nobreak"> </span><span class="mord">1</span><span class="mspace nobreak"> </span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">外部中断1请求端口</td>
+<td style="text-align:center">输入</td>
+</tr>
+<tr>
+<td style="text-align:center">P3.4</td>
+<td style="text-align:center">T0</td>
+<td style="text-align:left">定时器/计数器0外部计数输入端口</td>
+<td style="text-align:center">输入</td>
+</tr>
+<tr>
+<td style="text-align:center">P3.5</td>
+<td style="text-align:center">T1</td>
+<td style="text-align:left">定时器/计数器1外部计数输入端口</td>
+<td style="text-align:center">输入</td>
+</tr>
+<tr>
+<td style="text-align:center">P3.6</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>W</mi><mi>R</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{WR}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">片外数据存储器写选通</td>
+<td style="text-align:center"><strong>输出</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">P3.7</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>R</mi><mi>D</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{RD}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">片外数据存储器读选通</td>
+<td style="text-align:center">输入</td>
+</tr>
+</tbody>
+</table>
+<p>P3.0~P3.7中的8个锁存器组成P3 SFR（B0H）</p>
+<h3 id="243-p0口"><a class="markdownIt-Anchor" href="#243-p0口"></a> 2.4.3 P0口</h3>
+<p>控制端=0：通用I/O口工作方式</p>
+<p>控制端=1：地址/数据分时复用方式</p>
+<p>P0拥有第二功能（输出控制电路、 输出驱动电路）总线功能</p>
+<p>P0.0~P0.7中的8个锁存器组成P0 SFR（80H）</p>
+<h3 id="244-p2口"><a class="markdownIt-Anchor" href="#244-p2口"></a> 2.4.4 P2口</h3>
+<p>控制端=0：通用I/O口工作方式</p>
+<p>控制端=1：地址输出口方式</p>
+<p>P2口拥有（输出控制单元）总线功能</p>
+<p>P2.0～P2.7中的8个锁存器组成P2 SFR（A0H）</p>
+<h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>
+<ol>
+<li>单片机的CPU由控制器和运算器组成，在时钟电路和复位电路的支持下，按一定的时序工作。单片机的时序信号包括振荡周期、时钟周期、机器周期和指令周期。</li>
+<li>51单片机采用哈佛结构存储器，共有3个逻辑存储空间和4个物理存储空间。片内低128字节RAM中包含4个工作寄存器组、128个位地址单元和80个字节地址单元。片内高128字节RAM中离散分布有21个特殊功能寄存器。</li>
+<li>P0～P3口都可作为准双向通用I/O口，其中只有P0口需要外接上拉电阻；在需要扩展片外设备时，P2口可作为其地址线接口，P0口可作为其地址线/数据线复用接口，此时它是真正的双向口。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" data-id="ckw0pbgjf000cak4xbuml0j6y" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/11/05/%E7%AC%AC%E4%B8%89%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          第三章——单片机的汇编语言于程序设计
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/15/%E7%AC%AC%E4%B8%80%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">第一章——基础知识概述</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">┭┮﹏┭┮</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>主题链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+		  <script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard.min.js"></script>
+		<script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard-use.js"></script> 
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 叁墨<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

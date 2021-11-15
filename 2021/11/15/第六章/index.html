@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第六章 | ┭┮﹏┭┮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第六章	单片机的定时器&#x2F;计数器  6.1 定时&#x2F;计数器的结构与工作原理  6.1.1定时&#x2F;计数器的基本原理 纯软件定时&#x2F;计数方法： 定时——空循环预定周次，等待预定时间 计数——读取I&#x2F;O口电平，统计变化次数 基本思路：由CPU统计状态变化次数，待预定结果出现后输出标志。 存在问题：占用过多CPU机时 单片机软硬件联合定时&#x2F;计数方法：  定时器的本质是计数器(对时钟脉冲计数)，计数器则是对外来脉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第六章">
+<meta property="og:url" content="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E5%85%AD%E7%AB%A0/index.html">
+<meta property="og:site_name" content="┭┮﹏┭┮">
+<meta property="og:description" content="第六章	单片机的定时器&#x2F;计数器  6.1 定时&#x2F;计数器的结构与工作原理  6.1.1定时&#x2F;计数器的基本原理 纯软件定时&#x2F;计数方法： 定时——空循环预定周次，等待预定时间 计数——读取I&#x2F;O口电平，统计变化次数 基本思路：由CPU统计状态变化次数，待预定结果出现后输出标志。 存在问题：占用过多CPU机时 单片机软硬件联合定时&#x2F;计数方法：  定时器的本质是计数器(对时钟脉冲计数)，计数器则是对外来脉">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/Lzx3bqBaSvwcGPm.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/PLdUGNstOzDqCak.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/Abc5wBGxVKaOyhg.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/pAJ8osXDRmvySWf.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/pfijtC9wzFKeUqL.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/aQlNtm2e3UuVi9p.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/l9OWRyxZFTh5Grg.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/JgNIpmnx9GwbXY1.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/I3eV2ObamW4REsQ.png">
+<meta property="article:published_time" content="2021-11-15T11:50:49.000Z">
+<meta property="article:modified_time" content="2021-11-15T12:59:20.446Z">
+<meta property="article:author" content="叁墨">
+<meta property="article:tag" content="复习">
+<meta property="article:tag" content="概念">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/11/15/Lzx3bqBaSvwcGPm.png">
+  
+    <link rel="alternate" href="/atom.xml" title="┭┮﹏┭┮" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://i.loli.net/2021/11/03/HfJstrbNocMR12X.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+	   
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-第六章" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/15/%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-15T11:50:49.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第六章
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第六章单片机的定时器计数器"><a class="markdownIt-Anchor" href="#第六章单片机的定时器计数器"></a> 第六章	单片机的定时器/计数器</h1>
+<h2 id="61-定时计数器的结构与工作原理"><a class="markdownIt-Anchor" href="#61-定时计数器的结构与工作原理"></a> 6.1 定时/计数器的结构与工作原理</h2>
+<h3 id="611定时计数器的基本原理"><a class="markdownIt-Anchor" href="#611定时计数器的基本原理"></a> 6.1.1定时/计数器的基本原理</h3>
+<p><strong>纯软件定时/计数方法：</strong><br />
+定时——空循环预定周次，等待预定时间<br />
+计数——读取I/O口电平，统计变化次数</p>
+<p>基本思路：由CPU统计状态变化次数，待预定结果出现后输出标志。</p>
+<p>存在问题：占用过多CPU机时</p>
+<p><strong>单片机软硬件联合定时/计数方法：</strong></p>
+<p><img src="https://i.loli.net/2021/11/15/Lzx3bqBaSvwcGPm.png" alt="image-20211115203044473" /></p>
+<p><strong>定时器的本质是计数器(对时钟脉冲计数)，计数器则是对外来脉冲计数.</strong></p>
+<p><strong>基本工作原理：</strong></p>
+<p><img src="https://i.loli.net/2021/11/15/PLdUGNstOzDqCak.png" alt="image-20211115203258988" /></p>
+<p>t =(计数器最大空间-计数初值)×机器周期</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo><mo>×</mo><mfrac><mn>12</mn><mrow><mi>f</mi><mi>o</mi><mi>c</mi><mi>s</mi></mrow></mfrac><mo stretchy="false">(</mo><mi>μ</mi><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t=(2^n-a)×\frac{12}{focs}(\mu s)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mord mathdefault">c</span><span class="mord mathdefault">s</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span></span></p>
+<p><img src="https://i.loli.net/2021/11/15/Abc5wBGxVKaOyhg.png" alt="image-20211115203809515" /></p>
+<p>计数值N = (计数器满计数值 - 计数初值)</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N=(2^n-a)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span></span></p>
+<h3 id="612-定时计数器的结构"><a class="markdownIt-Anchor" href="#612-定时计数器的结构"></a> 6.1.2 定时/计数器的结构</h3>
+<p><img src="https://i.loli.net/2021/11/15/pAJ8osXDRmvySWf.png" alt="image-20211115203913489" /></p>
+<p>2个16位计数器T0 (TH0、TL0)和T1 (TH1、TL1)——加1计数器</p>
+<p>2个控制寄存器TCON和TMOD——管理计数器的运行</p>
+<p>2个外部引脚T0(P3.4)和T1(P3.5)——接入外部脉冲</p>
+<h2 id="62-定时器计数器的控制"><a class="markdownIt-Anchor" href="#62-定时器计数器的控制"></a> 6.2 定时器/计数器的控制</h2>
+<p>定时/计数器的控制关系（T1为例）</p>
+<p><img src="https://i.loli.net/2021/11/15/pfijtC9wzFKeUqL.png" alt="image-20211115204030683" /></p>
+<p>定时器控制寄存器——TCON</p>
+<p><img src="https://i.loli.net/2021/11/15/aQlNtm2e3UuVi9p.png" alt="image-20211115204116598" /></p>
+<p>定时器方式寄存器—TMOD</p>
+<p><img src="https://i.loli.net/2021/11/15/l9OWRyxZFTh5Grg.png" alt="image-20211115204134007" /></p>
+<h2 id="63-定时计数器的工作方式"><a class="markdownIt-Anchor" href="#63-定时计数器的工作方式"></a> 6.3 定时/计数器的工作方式</h2>
+<p><img src="https://i.loli.net/2021/11/15/JgNIpmnx9GwbXY1.png" alt="image-20211115204223723" /></p>
+<p><strong>注意</strong>：</p>
+<p>T0有4种工作方式，每种工作方式都有定时和计数2种方式。</p>
+<p>T1只有3种工作方式（T0的方式3中占用了T1的部分资源）。</p>
+<h3 id="631-方式1使用16位定时计数器thxtlx"><a class="markdownIt-Anchor" href="#631-方式1使用16位定时计数器thxtlx"></a> 6.3.1 方式1——使用16位定时/计数器（THx+TLx）</h3>
+<p>M1 M0  ——&gt;01</p>
+<p><strong>定时方式：</strong></p>
+<p>定时时间：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mn>2</mn><mn>1</mn></msup><mn>6</mn><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo><mo>×</mo><mfrac><mn>12</mn><mrow><mi>f</mi><mi>o</mi><mi>s</mi><mi>c</mi></mrow></mfrac><mo stretchy="false">(</mo><mi>μ</mi><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t=(2^16-a)×\frac{12}{fosc}(\mu s)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span></span></p>
+<p>最大定时时间（a=0,fosc=12MHz）:t=2<sup>16</sup>(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>)=65536(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>)</p>
+<p>定时范围为1~65536<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>(≈65ms)</p>
+<p><strong>计数方式：</strong></p>
+<p>计数值：N=（2<sup>16</sup>-a）</p>
+<p>最大计数值：N=65536（脉冲）</p>
+<p>由于一个负跳变需要2个机器周期，即24个振荡周期，故最高计数频率=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mn>24</mn></mfrac><mi>f</mi></mrow><annotation encoding="application/x-tex">\frac{1}{24}f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span><sub>osc</sub></p>
+<p>故，对于12MHz晶振，最大外部脉冲的频率为0.5MHz 。</p>
+<h3 id="632-方式2"><a class="markdownIt-Anchor" href="#632-方式2"></a> 6.3.2 方式2</h3>
+<p>采用8位计数器，延时时间 t = (2<sup>8</sup>-a)×<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>12</mn><mrow><mi>f</mi><mi>o</mi><mi>s</mi><mi>c</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{12}{fosc}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">c</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>  (微秒) → 12MHz时的最大定时量为256<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span></span></span></span>s；<br />
+可自动重装载计数初值（TLx溢出后, THx数值可自动装入TLx）；<br />
+因没有装载计数初值造成的定时延误，方式2定时精度相对较高。</p>
+<h3 id="633-方式0"><a class="markdownIt-Anchor" href="#633-方式0"></a> 6.3.3 方式0</h3>
+<p>使用13位的定时/计数器（THi<sub>7-0</sub>+TLi<sub>4-0</sub>）</p>
+<p>除计数器位数不同外，方式0与方式1的逻辑结构并无差异。<br />
+方式0采用13位计数器是为了与早期产品MCS-48单片机兼容。<br />
+方式0的初值计算比较麻烦，一般采用方式1替代。</p>
+<h3 id="634-方式3"><a class="markdownIt-Anchor" href="#634-方式3"></a> 6.3.4 方式3</h3>
+<p><img src="https://i.loli.net/2021/11/15/I3eV2ObamW4REsQ.png" alt="image-20211115205740568" /></p>
+<p>TH0+TF1+TR1组成的8位定时器</p>
+<p>TL0+TF0+TR0组成的8位定时/计数器</p>
+<p>T1组成的无中断功能的定时器</p>
+<p><strong>特点</strong>：方式3下T0可有2个具有中断功能的8位定时器</p>
+<h2 id="64-定时计数器的编程和应用"><a class="markdownIt-Anchor" href="#64-定时计数器的编程和应用"></a> 6.4 定时/计数器的编程和应用</h2>
+<p>应用：</p>
+<ul>
+<li>定时器——用于定时控制，或作为分频器发生各种不同频率的方波；</li>
+<li>计数器——用于外部脉冲统计或外部中断源扩充；</li>
+<li>复杂应用—需要将定时与计数结合起来。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E5%85%AD%E7%AB%A0/" data-id="ckw0pbgjh000hak4xfuc6cqyh" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          第七章
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/15/%E7%AC%AC%E4%BA%94%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">第五章</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">┭┮﹏┭┮</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>主题链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+		  <script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard.min.js"></script>
+		<script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard-use.js"></script> 
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 叁墨<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

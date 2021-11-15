@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>单片机汇编程序练习 | ┭┮﹏┭┮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="题目来源网络，练习使用,答案已省去ORG和END指令，实现内容不保证正确 1、将30H~3FH的数放到50H~5FH地址去。 12345678	MOV R0,#30h				#原数据地址赋给R0	MOV R1,#50H				#目标地址赋给R1L_LOOP:	MOV A,@R0				#将R0存的原地址存的数据赋给A	MOV @R1,A				#将上一步获得的数据赋给R1存的目标地址	INC R0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单片机汇编程序练习">
+<meta property="og:url" content="http://lkbby.github.io/2021/11/06/%E5%8D%95%E7%89%87%E6%9C%BA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E7%BB%83%E4%B9%A0/index.html">
+<meta property="og:site_name" content="┭┮﹏┭┮">
+<meta property="og:description" content="题目来源网络，练习使用,答案已省去ORG和END指令，实现内容不保证正确 1、将30H~3FH的数放到50H~5FH地址去。 12345678	MOV R0,#30h				#原数据地址赋给R0	MOV R1,#50H				#目标地址赋给R1L_LOOP:	MOV A,@R0				#将R0存的原地址存的数据赋给A	MOV @R1,A				#将上一步获得的数据赋给R1存的目标地址	INC R0">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-06T07:39:21.000Z">
+<meta property="article:modified_time" content="2021-11-06T23:50:33.638Z">
+<meta property="article:author" content="叁墨">
+<meta property="article:tag" content="复习">
+<meta property="article:tag" content="代码">
+<meta property="article:tag" content="习题">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="┭┮﹏┭┮" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://i.loli.net/2021/11/03/HfJstrbNocMR12X.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+	   
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-单片机汇编程序练习" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/06/%E5%8D%95%E7%89%87%E6%9C%BA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E7%BB%83%E4%B9%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-06T07:39:21.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      单片机汇编程序练习
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>题目来源网络，练习使用,答案已省去ORG和END指令，实现内容不保证正确</strong></p>
+<p><strong>1、将30H~3FH的数放到50H~5FH地址去。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	MOV R0,#30h				#原数据地址赋给R0</span><br><span class="line">	MOV R1,#50H				#目标地址赋给R1</span><br><span class="line">L_LOOP:</span><br><span class="line">	MOV A,@R0				#将R0存的原地址存的数据赋给A</span><br><span class="line">	MOV @R1,A				#将上一步获得的数据赋给R1存的目标地址</span><br><span class="line">	INC R0					#原地址下一位</span><br><span class="line">	INC R1					#目标地址下一位</span><br><span class="line">	CJNE R0,#3FH,L_LOOP		#R0!=0x3F则跳转回LINE3，0x3F为原数据截止地址</span><br></pre></td></tr></table></figure>
+<p><strong>2、将以40H开始的连续的10个存储单元的数据放到50H开始的连续地址上</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	MOV R6,#10				#给R6赋值10用作计数</span><br><span class="line">	MOV R0,#40H				#原数据地址赋给R0</span><br><span class="line">	MOV R1,#50H				#目标地址赋给R1</span><br><span class="line">L_LOOP:</span><br><span class="line">	MOV A,@R0				#将R0存原地址的数据赋值给A</span><br><span class="line">	MOV @R1,A				#将上一步获得的数据赋值给R1存的目标地址</span><br><span class="line">	INC R0					#原地址下一位</span><br><span class="line">	INC R1					#目标地址下一位</span><br><span class="line">    DJNZ R6,L_LOOP			#R6减一操作，不等于0则跳转回LINE4继续循环</span><br></pre></td></tr></table></figure>
+<p><strong>3、计算1+2+3+···+99，求得和低位放入50H，高位放入51H</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">    MOV 50H,#00H			#目标低位地址清零</span><br><span class="line">    MOV 51H,#00H			#目标高位地址清零</span><br><span class="line">    MOV R6,#00H				#每一次加数存放位置</span><br><span class="line">L_LOOP:</span><br><span class="line">	MOV A,R6				#加数赋值给A</span><br><span class="line">	ADD A,#01				#A+1</span><br><span class="line">	DAA						#加法调整十六进制---&gt;十进制</span><br><span class="line">	MOV R6,A				#新的加数（+1操作后的）赋值给R6</span><br><span class="line">	MOV A,50H				#把低位和赋值给A</span><br><span class="line">	ADD A,R6				#低位相加</span><br><span class="line">	DAA						</span><br><span class="line">	MOV 50H,A				#将低位相加结果赋值给50H</span><br><span class="line">	CLR A					#A清零</span><br><span class="line">	ADDC A,51H				#高位相加并加进位</span><br><span class="line">	DAA	</span><br><span class="line">	MOV 51H,A				#结果赋给51H</span><br><span class="line">	CJNE R6,#99H,L_LOOP		#累加99次</span><br></pre></td></tr></table></figure>
+<p><strong>4、将ROM中自2000H单元起的100个数，按序移至片外RAM自2080H单元起的内存区间去</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	MOV DPTR,#2000H			#数据块首地址放入DPTR</span><br><span class="line">	MOV R1,#64H				#100个数计数</span><br><span class="line">	MOV R2,#0				#偏移量存在R2中</span><br><span class="line">LOOP:</span><br><span class="line">	MOV A,R2				#把偏移量赋给A</span><br><span class="line">	MOVC A,@A+DPTR			#读ROM中数据，地址为基础地址＋偏移量　A值为前者地址内的数据   ROM与A的数据传送只能用MOVC</span><br><span class="line">	MOV R3,A				#将获得的数据赋给R3</span><br><span class="line">	MOV A,#80H				#</span><br><span class="line">	ADD A,R2				#和上一句共同确定RAM的地址低位</span><br><span class="line">	MOV DPL,A				#低位地址存到DPL中（高位一样的不用额外赋值</span><br><span class="line">	MOV A,R3				#获取ROM中数据赋给A</span><br><span class="line">	MOVX @DPTR,A			#将A写给DPTR中存放地址的地方（这里已经在原２０００H基础上加了８０）</span><br><span class="line">	INC R2					#下一个数</span><br><span class="line">	MOV DPL,#0				#低位清零，等下一次循环重新赋值</span><br><span class="line">	DJNZ R1,LOOP			#R1每次-1，=0后循环停止</span><br></pre></td></tr></table></figure>
+<p><strong>5、编写程序将片外数据存储器地址为1000H~102FH的数据块，全部搬迁到片内RAM30H~5FH中，并将原数据块区域全部清零</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">START:</span><br><span class="line">	MOV DPTR,#1000H			#定位片外地址为1000H</span><br><span class="line">	MOV R0,#30H				#计数30H</span><br><span class="line">	MOV R1,#30H				#片内地址0x30</span><br><span class="line">LOOP:</span><br><span class="line">	MOVX A,@DPTR			#将DPTR存的地址中的数据赋给A</span><br><span class="line">	MOV @R1,A				#将读到的数据存到R1存的地址的地方</span><br><span class="line">	CLR A					#清空A</span><br><span class="line">	MOVX @DPTR,A			#清空原数据</span><br><span class="line">	INC DPTR				#下一位源数据</span><br><span class="line">	INC R1					#下一位目标地址</span><br><span class="line">	DJNZ R0,LOOP			#R0每次-1，=0后循环停止</span><br></pre></td></tr></table></figure>
+<p><strong>6、设有100个有符号数，连续存放在以2000H为首地址的片外数据存储器中，试编程序统计其中正数、负数和零的个数，统计的个数分别放在R0，R1、R2中。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">START:</span><br><span class="line">	CLR A					#清空A内的值</span><br><span class="line">	MOV R0,A				#清空R0</span><br><span class="line">	MOV R1,A				#清空R1</span><br><span class="line">	MOV R2,A				#清空R2</span><br><span class="line">	MOV DPTR,#2000H			#源数据地址赋给DPTR</span><br><span class="line">	MOV R3,#100				#计数100个数据</span><br><span class="line">LOOP:</span><br><span class="line">	MOVX A,@DPTR			#取数据赋值给A</span><br><span class="line">	JZ ZERO					#若A=0（即取得数据为0）则跳转到ZERO代码段（判断顺寻  0   -   +）</span><br><span class="line">	JB A.7,NEG				#判断数据最高位（即判断正负）最高位为1则跳转到NEG代码段</span><br><span class="line">	INC R0					#不是0，不是负数，则正数+1</span><br><span class="line">	SJMP LL					#跳转到LL代码段（对于当前地址已取得数判断完成）</span><br><span class="line">ZERO:</span><br><span class="line">	INC R2					#0个数+1</span><br><span class="line">	SJMP LL					</span><br><span class="line">NEG:</span><br><span class="line">	INC R1					#负数+1</span><br><span class="line">LL: </span><br><span class="line">	INC DPTR				#下一个数</span><br><span class="line">	DJNZ R3,LOOP			#每次R3-1，=0时退出循环</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/06/%E5%8D%95%E7%89%87%E6%9C%BA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E7%BB%83%E4%B9%A0/" data-id="ckw0pbgj50003ak4x72wjhpya" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%A0%E9%A2%98/" rel="tag">习题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/11/10/%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          第一章算法概述
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/06/%E9%97%AE%E9%A2%98O%EF%BC%9A%E6%97%A0%E8%84%91%E5%8D%9A%E5%A3%AB%E7%9A%84%E8%AF%95%E7%AE%A1%E4%BB%AC/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">问题O：无脑博士的试管们</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">┭┮﹏┭┮</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>主题链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+		  <script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard.min.js"></script>
+		<script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard-use.js"></script> 
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 叁墨<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

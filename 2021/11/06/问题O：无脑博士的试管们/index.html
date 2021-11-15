@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>问题O：无脑博士的试管们 | ┭┮﹏┭┮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题O：无脑博士的试管们  题目描述 无脑博士有三个容量分别是 A,B,C 升的试管，A,B,C分别是三个从 1到 20的整数，最初，A 和 B 试管都是空的，而 C 试管是装满硫酸铜溶液的。有时，无脑博士把硫酸铜溶液从一个试管倒到另一个试管中，直到被灌试管装满或原试管空了。当然每一次灌注都是完全的。由于无脑博士天天这么折腾，早已熟练，溶液在倒的过程中不会有丢失。 写一个程序去帮助无脑博士找出当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="问题O：无脑博士的试管们">
+<meta property="og:url" content="http://lkbby.github.io/2021/11/06/%E9%97%AE%E9%A2%98O%EF%BC%9A%E6%97%A0%E8%84%91%E5%8D%9A%E5%A3%AB%E7%9A%84%E8%AF%95%E7%AE%A1%E4%BB%AC/index.html">
+<meta property="og:site_name" content="┭┮﹏┭┮">
+<meta property="og:description" content="问题O：无脑博士的试管们  题目描述 无脑博士有三个容量分别是 A,B,C 升的试管，A,B,C分别是三个从 1到 20的整数，最初，A 和 B 试管都是空的，而 C 试管是装满硫酸铜溶液的。有时，无脑博士把硫酸铜溶液从一个试管倒到另一个试管中，直到被灌试管装满或原试管空了。当然每一次灌注都是完全的。由于无脑博士天天这么折腾，早已熟练，溶液在倒的过程中不会有丢失。 写一个程序去帮助无脑博士找出当">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-05T19:31:56.000Z">
+<meta property="article:modified_time" content="2021-11-05T21:17:49.253Z">
+<meta property="article:author" content="叁墨">
+<meta property="article:tag" content="代码">
+<meta property="article:tag" content="作业">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="┭┮﹏┭┮" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://i.loli.net/2021/11/03/HfJstrbNocMR12X.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+	   
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-问题O：无脑博士的试管们" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/06/%E9%97%AE%E9%A2%98O%EF%BC%9A%E6%97%A0%E8%84%91%E5%8D%9A%E5%A3%AB%E7%9A%84%E8%AF%95%E7%AE%A1%E4%BB%AC/" class="article-date">
+  <time class="post-time" datetime="2021-11-05T19:31:56.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      问题O：无脑博士的试管们
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题o无脑博士的试管们"><a class="markdownIt-Anchor" href="#问题o无脑博士的试管们"></a> 问题O：无脑博士的试管们</h1>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>无脑博士有三个容量分别是 A,B,C 升的试管，A,B,C分别是三个从 1到 20的整数，最初，A 和 B 试管都是空的，而 C 试管是装满硫酸铜溶液的。有时，无脑博士把硫酸铜溶液从一个试管倒到另一个试管中，直到被灌试管装满或原试管空了。当然每一次灌注都是完全的。由于无脑博士天天这么折腾，早已熟练，溶液在倒的过程中不会有丢失。</p>
+<p>写一个程序去帮助无脑博士找出当 A 试管是空的时候，C 试管中硫酸铜溶液所剩量的所有可能性。</p>
+<h2 id="输入"><a class="markdownIt-Anchor" href="#输入"></a> 输入</h2>
+<p>多组测试用例，对于每组测试用例，输入包括一行，为空格分隔开的三个数，分别为整数 A,B,C。</p>
+<h2 id="输出"><a class="markdownIt-Anchor" href="#输出"></a> 输出</h2>
+<p>输出包括一行，升序地列出当 A 试管是空的时候，C 试管溶液所剩量的所有可能性。</p>
+<h2 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 5 10</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> A, B, C;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">30</span>][<span class="number">30</span>][<span class="number">30</span>];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (dp[a][b][c]) <span class="keyword">return</span>;</span><br><span class="line">	dp[a][b][c] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="number">0</span> == a) ans.<span class="built_in">push_back</span>(c);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (a &lt;= B - b) <span class="built_in">solve</span>(<span class="number">0</span>, a + b, c);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(a + b - B, B, c);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (b &lt;= A - a) <span class="built_in">solve</span>(a + b, <span class="number">0</span>, c);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(A, a + b - A, c);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (a &lt;= C - c) <span class="built_in">solve</span>(<span class="number">0</span>, b, a + c);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(a + c - C, b, C);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (c &lt;= A - a) <span class="built_in">solve</span>(a + c, b, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(A, b, a + c - A);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (b &lt;= C - c) <span class="built_in">solve</span>(a, <span class="number">0</span>, b + c);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(a, b + c - C, C);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (c &lt;= B - b) <span class="built_in">solve</span>(a, b + c, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(a, B, b + c - B);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;A, &amp;B, &amp;C) == <span class="number">3</span>) &#123;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(dp));</span><br><span class="line">		ans.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="built_in">solve</span>(<span class="number">0</span>, <span class="number">0</span>, C);</span><br><span class="line">		<span class="built_in">sort</span>(ans.<span class="built_in">begin</span>(), ans.<span class="built_in">end</span>());</span><br><span class="line">		<span class="keyword">int</span> len = ans.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d%c&quot;</span>, ans[i], i + <span class="number">1</span> == len ? <span class="string">&#x27;\n&#x27;</span> : <span class="string">&#x27; &#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/06/%E9%97%AE%E9%A2%98O%EF%BC%9A%E6%97%A0%E8%84%91%E5%8D%9A%E5%A3%AB%E7%9A%84%E8%AF%95%E7%AE%A1%E4%BB%AC/" data-id="ckw0pbgjy001pak4xaxf140xk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/11/06/%E5%8D%95%E7%89%87%E6%9C%BA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E7%BB%83%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          单片机汇编程序练习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/06/%E9%97%AE%E9%A2%98N%EF%BC%9A%E7%BB%84%E5%90%88%E8%BF%90%E7%AE%97%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">问题N：组合运算式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">┭┮﹏┭┮</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>主题链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+		  <script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard.min.js"></script>
+		<script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard-use.js"></script> 
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 叁墨<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

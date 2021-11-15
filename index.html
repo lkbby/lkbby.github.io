@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>┭┮﹏┭┮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="┭┮﹏┭┮">
+<meta property="og:url" content="http://lkbby.github.io/index.html">
+<meta property="og:site_name" content="┭┮﹏┭┮">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="叁墨">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="┭┮﹏┭┮" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://i.loli.net/2021/11/03/HfJstrbNocMR12X.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+	   
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-第七章" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-15T11:51:02.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/">第七章</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第七章单片机的串行通信技术"><a class="markdownIt-Anchor" href="#第七章单片机的串行通信技术"></a> 第七章	单片机的串行通信技术</h1>
+<h2 id="71-串行通信概述"><a class="markdownIt-Anchor" href="#71-串行通信概述"></a> 7.1 串行通信概述</h2>
+<h3 id="711-并行通信和串行通信"><a class="markdownIt-Anchor" href="#711-并行通信和串行通信"></a> 7.1.1 并行通信和串行通信</h3>
+<p><strong>1、并行方式</strong></p>
+<p>数据的各位同时发送或同时接收</p>
+<p><img src="https://i.loli.net/2021/11/15/hIvXpBfFr4QxYu7.png" alt="image-20211115210638401" /></p>
+<p><strong>特点</strong>：</p>
+<p>传送速度快，但需要多根传输线，故一般只在近距离通信中使用</p>
+<p><strong>2、串行方式</strong></p>
+<p>数据的各位依次逐位发送或接收</p>
+<p><img src="https://i.loli.net/2021/11/15/VWE4qitao2J9d7F.png" alt="image-20211115210829346" /></p>
+<p><strong>特点：</strong></p>
+<p>传输速度慢，但因只需较少的传输线，故适合于远距离通信</p>
+<p><strong>3、传输形式</strong></p>
+<p>按照传输的数据流向分：</p>
+<p>单工制式：通信线的一端为发送器（TXD），一端为接收器（RXD），数据只能按照一个固定的方向传送</p>
+<p>半双工制式：系统由一个TXD和一个RXD组成，但不能同时在两个方向上传送，收发开关由软件方式切换</p>
+<p>全双工制式：通信系统每端都有TXD和RXD，可以同时发送和接收，即数据可以在两个方向上同时传送</p>
+<h3 id="712-波特率"><a class="markdownIt-Anchor" href="#712-波特率"></a> 7.1.2 波特率</h3>
+<p>在串行通信的数据是按位进行传送的，数据传输速率用波特率指标衡量</p>
+<p>波特率：每秒发送二进制数码的位数，即bps（位/秒）</p>
+<p>串行通信的收发双方必须采用相同的波特率</p>
+<h3 id="713-异步通信和同步通信"><a class="markdownIt-Anchor" href="#713-异步通信和同步通信"></a> 7.1.3 异步通信和同步通信</h3>
+<p><strong>1、异步通信</strong></p>
+<p>——以字符为单位组成字符帧进行的数据传送。</p>
+<p><img src="https://i.loli.net/2021/11/15/1G5aWRYvNU9LgxT.png" alt="image-20211115211350622" /></p>
+<p>一帧数据由起始位、数据位、[可编程位]和停止位构成</p>
+<p><strong>起始位</strong>：位于数据帧开头，占1位，始终为低电平，用于向接收设备表示发送端开始发送1帧数据。<br />
+<strong>数据位</strong>：要传输的数据信息，可以是字符或数据，一般为5～8位，由低位到高位依次传送。<br />
+<strong>可编程位</strong>：位于数据位之后，占1位，用于发送数据的校验，或传送多机串行通信的联络信息。<br />
+<strong>停止位</strong>：位于数据位末尾，占1位，始终为高电平，用于向接收端表示1帧数据已发送完毕。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>对收发双方的时钟精度要求较低（收发双方不同步时，能依靠在每帧开始时的不断对齐，自行纠正偏差）</li>
+<li>传送速度较低（每个字节都要建立一次同步）</li>
+</ul>
+<p><strong>2、同步通信</strong></p>
+<p>——数据以块为单位进行的数据传送</p>
+<p><img src="https://i.loli.net/2021/11/15/ArcifeXGQmR8n1N.png" alt="image-20211115211545495" /></p>
+<p>在发一组数据时，只在开始用若干个同步字符作为双方的号令，然后连续发送整组数据。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>传输效率高（以数据块为单位连续传送，数据结构紧凑）</li>
+<li>对通信硬件要求高（要求双方有准确的时钟）</li>
+</ul>
+<p>本章不讨论同步通信问题</p>
+<h2 id="72-mcs-51的串口控制器"><a class="markdownIt-Anchor" href="#72-mcs-51的串口控制器"></a> 7.2 MCS-51的串口控制器</h2>
+<h3 id="721-串行口内部结构"><a class="markdownIt-Anchor" href="#721-串行口内部结构"></a> 7.2.1 串行口内部结构</h3>
+<p><img src="C:%5CUsers%5C86151%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211115211826870.png" alt="image-20211115211826870" /></p>
+<p><strong>MCS-51内部有1个可编程的全双工串行通信接口</strong>，可以作为通用异步接收/发送器（UART），也可作为同步移位寄存器。通过引脚RXD（P3.0）和TXD（P3.1）与外界进行通信。</p>
+<p><strong>2个数据缓冲器SBUF在物理上是相互独立的</strong>，一个用于发送数据（SBUF发）、一个用于接收数据（SBUF收）。2个SBUF共用一个地址（99H），通过读写指令区别是对哪个SUBF的操作。</p>
+<p><strong>发送控制器</strong>的作用是在门电路和定时器T1的配合下，将SBUF发中的并行数据转为串行数据，并自动添加起始位、可编程位、停止位。这一过程结束后自动使发送中断请求标志位TI置1，用以通知CPU已将SBUF发中的数据输出到了TXD引脚。</p>
+<p><strong>接收控制器</strong>的作用是在输入移位寄存器和定时器T1的配合下,使来自RXD引脚的串行数据转为并行数据，并自动过滤掉起始位、可编程位、停止位。这一过程结束后自动使接收中断请求标志位RI置1，用以通知CPU接收的数据已存入SBUF收。</p>
+<p><strong>定时器T1</strong>的作用是产生用以收发过程中节拍控制的通信时钟。发送数据时，通信时钟的下降沿对应于数据移位输出；接收数据时，通信时钟的上升沿对应于数据位采样。通信时钟频率（波特率）由定时器的控制寄存器管理。</p>
+<p>**RXD（P3.0）和TXD（P3.1）**用于串行信号或时钟信号的传入或传出。</p>
+<h3 id="722-串行口控制寄存器"><a class="markdownIt-Anchor" href="#722-串行口控制寄存器"></a> 7.2.2 串行口控制寄存器</h3>
+<p><strong>1、串行数据缓冲器，SBUF</strong></p>
+<p><strong>2、串口控制寄存器，SCON</strong></p>
+<p><strong>3、电源控制寄存器，PCON</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/" data-id="ckw0pbgjb0008ak4xhmf4eylk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-第六章" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/15/%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-15T11:50:49.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/15/%E7%AC%AC%E5%85%AD%E7%AB%A0/">第六章</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第六章单片机的定时器计数器"><a class="markdownIt-Anchor" href="#第六章单片机的定时器计数器"></a> 第六章	单片机的定时器/计数器</h1>
+<h2 id="61-定时计数器的结构与工作原理"><a class="markdownIt-Anchor" href="#61-定时计数器的结构与工作原理"></a> 6.1 定时/计数器的结构与工作原理</h2>
+<h3 id="611定时计数器的基本原理"><a class="markdownIt-Anchor" href="#611定时计数器的基本原理"></a> 6.1.1定时/计数器的基本原理</h3>
+<p><strong>纯软件定时/计数方法：</strong><br />
+定时——空循环预定周次，等待预定时间<br />
+计数——读取I/O口电平，统计变化次数</p>
+<p>基本思路：由CPU统计状态变化次数，待预定结果出现后输出标志。</p>
+<p>存在问题：占用过多CPU机时</p>
+<p><strong>单片机软硬件联合定时/计数方法：</strong></p>
+<p><img src="https://i.loli.net/2021/11/15/Lzx3bqBaSvwcGPm.png" alt="image-20211115203044473" /></p>
+<p><strong>定时器的本质是计数器(对时钟脉冲计数)，计数器则是对外来脉冲计数.</strong></p>
+<p><strong>基本工作原理：</strong></p>
+<p><img src="https://i.loli.net/2021/11/15/PLdUGNstOzDqCak.png" alt="image-20211115203258988" /></p>
+<p>t =(计数器最大空间-计数初值)×机器周期</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo><mo>×</mo><mfrac><mn>12</mn><mrow><mi>f</mi><mi>o</mi><mi>c</mi><mi>s</mi></mrow></mfrac><mo stretchy="false">(</mo><mi>μ</mi><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t=(2^n-a)×\frac{12}{focs}(\mu s)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mord mathdefault">c</span><span class="mord mathdefault">s</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span></span></p>
+<p><img src="https://i.loli.net/2021/11/15/Abc5wBGxVKaOyhg.png" alt="image-20211115203809515" /></p>
+<p>计数值N = (计数器满计数值 - 计数初值)</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N=(2^n-a)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span></span></p>
+<h3 id="612-定时计数器的结构"><a class="markdownIt-Anchor" href="#612-定时计数器的结构"></a> 6.1.2 定时/计数器的结构</h3>
+<p><img src="https://i.loli.net/2021/11/15/pAJ8osXDRmvySWf.png" alt="image-20211115203913489" /></p>
+<p>2个16位计数器T0 (TH0、TL0)和T1 (TH1、TL1)——加1计数器</p>
+<p>2个控制寄存器TCON和TMOD——管理计数器的运行</p>
+<p>2个外部引脚T0(P3.4)和T1(P3.5)——接入外部脉冲</p>
+<h2 id="62-定时器计数器的控制"><a class="markdownIt-Anchor" href="#62-定时器计数器的控制"></a> 6.2 定时器/计数器的控制</h2>
+<p>定时/计数器的控制关系（T1为例）</p>
+<p><img src="https://i.loli.net/2021/11/15/pfijtC9wzFKeUqL.png" alt="image-20211115204030683" /></p>
+<p>定时器控制寄存器——TCON</p>
+<p><img src="https://i.loli.net/2021/11/15/aQlNtm2e3UuVi9p.png" alt="image-20211115204116598" /></p>
+<p>定时器方式寄存器—TMOD</p>
+<p><img src="https://i.loli.net/2021/11/15/l9OWRyxZFTh5Grg.png" alt="image-20211115204134007" /></p>
+<h2 id="63-定时计数器的工作方式"><a class="markdownIt-Anchor" href="#63-定时计数器的工作方式"></a> 6.3 定时/计数器的工作方式</h2>
+<p><img src="https://i.loli.net/2021/11/15/JgNIpmnx9GwbXY1.png" alt="image-20211115204223723" /></p>
+<p><strong>注意</strong>：</p>
+<p>T0有4种工作方式，每种工作方式都有定时和计数2种方式。</p>
+<p>T1只有3种工作方式（T0的方式3中占用了T1的部分资源）。</p>
+<h3 id="631-方式1使用16位定时计数器thxtlx"><a class="markdownIt-Anchor" href="#631-方式1使用16位定时计数器thxtlx"></a> 6.3.1 方式1——使用16位定时/计数器（THx+TLx）</h3>
+<p>M1 M0  ——&gt;01</p>
+<p><strong>定时方式：</strong></p>
+<p>定时时间：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mn>2</mn><mn>1</mn></msup><mn>6</mn><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo><mo>×</mo><mfrac><mn>12</mn><mrow><mi>f</mi><mi>o</mi><mi>s</mi><mi>c</mi></mrow></mfrac><mo stretchy="false">(</mo><mi>μ</mi><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t=(2^16-a)×\frac{12}{fosc}(\mu s)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span></span></p>
+<p>最大定时时间（a=0,fosc=12MHz）:t=2<sup>16</sup>(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>)=65536(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>)</p>
+<p>定时范围为1~65536<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>(≈65ms)</p>
+<p><strong>计数方式：</strong></p>
+<p>计数值：N=（2<sup>16</sup>-a）</p>
+<p>最大计数值：N=65536（脉冲）</p>
+<p>由于一个负跳变需要2个机器周期，即24个振荡周期，故最高计数频率=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mn>24</mn></mfrac><mi>f</mi></mrow><annotation encoding="application/x-tex">\frac{1}{24}f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span><sub>osc</sub></p>
+<p>故，对于12MHz晶振，最大外部脉冲的频率为0.5MHz 。</p>
+<h3 id="632-方式2"><a class="markdownIt-Anchor" href="#632-方式2"></a> 6.3.2 方式2</h3>
+<p>采用8位计数器，延时时间 t = (2<sup>8</sup>-a)×<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>12</mn><mrow><mi>f</mi><mi>o</mi><mi>s</mi><mi>c</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{12}{fosc}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">c</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>  (微秒) → 12MHz时的最大定时量为256<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span></span></span></span>s；<br />
+可自动重装载计数初值（TLx溢出后, THx数值可自动装入TLx）；<br />
+因没有装载计数初值造成的定时延误，方式2定时精度相对较高。</p>
+<h3 id="633-方式0"><a class="markdownIt-Anchor" href="#633-方式0"></a> 6.3.3 方式0</h3>
+<p>使用13位的定时/计数器（THi<sub>7-0</sub>+TLi<sub>4-0</sub>）</p>
+<p>除计数器位数不同外，方式0与方式1的逻辑结构并无差异。<br />
+方式0采用13位计数器是为了与早期产品MCS-48单片机兼容。<br />
+方式0的初值计算比较麻烦，一般采用方式1替代。</p>
+<h3 id="634-方式3"><a class="markdownIt-Anchor" href="#634-方式3"></a> 6.3.4 方式3</h3>
+<p><img src="https://i.loli.net/2021/11/15/I3eV2ObamW4REsQ.png" alt="image-20211115205740568" /></p>
+<p>TH0+TF1+TR1组成的8位定时器</p>
+<p>TL0+TF0+TR0组成的8位定时/计数器</p>
+<p>T1组成的无中断功能的定时器</p>
+<p><strong>特点</strong>：方式3下T0可有2个具有中断功能的8位定时器</p>
+<h2 id="64-定时计数器的编程和应用"><a class="markdownIt-Anchor" href="#64-定时计数器的编程和应用"></a> 6.4 定时/计数器的编程和应用</h2>
+<p>应用：</p>
+<ul>
+<li>定时器——用于定时控制，或作为分频器发生各种不同频率的方波；</li>
+<li>计数器——用于外部脉冲统计或外部中断源扩充；</li>
+<li>复杂应用—需要将定时与计数结合起来。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E5%85%AD%E7%AB%A0/" data-id="ckw0pbgjh000hak4xfuc6cqyh" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-第五章" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/15/%E7%AC%AC%E4%BA%94%E7%AB%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-15T11:50:34.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/15/%E7%AC%AC%E4%BA%94%E7%AB%A0/">第五章</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第五章单片机的中断系统"><a class="markdownIt-Anchor" href="#第五章单片机的中断系统"></a> 第五章	单片机的中断系统</h1>
+<h2 id="51-中断的概念"><a class="markdownIt-Anchor" href="#51-中断的概念"></a> 5.1 中断的概念</h2>
+<p>中断是指在突发事件到来时先中止当前正在进行的工作，转而去处理突发事件。待处理完成后，再返回到原先被中止的工作处，继续进行随后的工作。</p>
+<p><img src="https://i.loli.net/2021/11/15/1FLA4Y935bDIOCn.png" alt="image-20211115195707387" /></p>
+<p>中断响应过程：由中断管理系统处理突发事件的过程；<br />
+中断源：中断管理系统能够处理的突发事件;<br />
+中断请求：中断源向CPU提出的处理请求;<br />
+中断函数：针对中断源和中断请求提供的服务函数;<br />
+中断嵌套：在中断服务过程中执行更高级别的中断服务</p>
+<p><strong>中断实现的功能：</strong></p>
+<p>1、分时操作：CPU可以使多个外设同时工作，并分时为各外设提供服务，从而大大提高了CPU的利用率和输入/输出的速度。<br />
+2、实时处理：当计算机用于实时控制时，请求CPU提供服务是随机发生的。有了中断系统，CPU就可以立即响应并加以处理。<br />
+3、故障处理：当计算机运行中出现如电源断电、存储器校验出错、运算溢出等错误时，CPU可及时转去执行故障处理程序，而不会死机。</p>
+<h2 id="52-中断控制系统"><a class="markdownIt-Anchor" href="#52-中断控制系统"></a> 5.2 中断控制系统</h2>
+<h3 id="521-中断系统的结构"><a class="markdownIt-Anchor" href="#521-中断系统的结构"></a> 5.2.1 中断系统的结构</h3>
+<p><strong>1、中断源</strong></p>
+<p><img src="https://i.loli.net/2021/11/15/ymAlVw5XBLM1JSZ.png" alt="image-20211115200330322" /></p>
+<p><img src="https://i.loli.net/2021/11/15/fYWHAtI5JZ3kCBR.png" alt="image-20211115200346001" /></p>
+<p><strong>2、中断请求标志</strong></p>
+<p><img src="https://i.loli.net/2021/11/15/xAN2O74hr8Tw51W.png" alt="image-20211115200520333" /></p>
+<h3 id="522-中断控制"><a class="markdownIt-Anchor" href="#522-中断控制"></a> 5.2.2 中断控制</h3>
+<h4 id="1-tcon寄存器"><a class="markdownIt-Anchor" href="#1-tcon寄存器"></a> 1、TCON寄存器</h4>
+<p>可位寻址</p>
+<p><img src="https://i.loli.net/2021/11/15/w2L7Ytep4CRlufm.png" alt="image-20211115200635924" /></p>
+<p><img src="https://i.loli.net/2021/11/15/6yfCeOhIT4dHFxw.png" alt="image-20211115200713058" /></p>
+<p>51单片机复位后，TCON初值为0，即默认为无上述4个中断请求、电平触发外部中断方式。</p>
+<h4 id="2-scon寄存器"><a class="markdownIt-Anchor" href="#2-scon寄存器"></a> 2、SCON寄存器</h4>
+<p>可位寻址</p>
+<p><img src="https://i.loli.net/2021/11/15/Cyb6DYJpLnMR8j2.png" alt="image-20211115200828956" /></p>
+<p>TI和RI虽然是2个中断请求标志位，但在SCON之后经或门电路合成为1个信息，统一接受中断管理。</p>
+<h4 id="3-te寄存器"><a class="markdownIt-Anchor" href="#3-te寄存器"></a> 3、TE寄存器</h4>
+<p>可位寻址</p>
+<p><img src="https://i.loli.net/2021/11/15/BekpfOr3sJLKE92.png" alt="image-20211115200916315" /></p>
+<p>单片机复位后，IE的初值为0，即默认为整体禁止中断</p>
+<h4 id="4-ip寄存器"><a class="markdownIt-Anchor" href="#4-ip寄存器"></a> 4、IP寄存器</h4>
+<p>可位寻址</p>
+<p><img src="https://i.loli.net/2021/11/15/1GLCh7nu4IqmEzX.png" alt="image-20211115201041066" /></p>
+<p>51单片机复位后，IP初值为0，即默认为全部低优先级中断。</p>
+<p>当多个同级中断源同时提出中断请求时，CPU将优先响应<strong>自然优先级</strong>高的中断请求。</p>
+<p><img src="https://i.loli.net/2021/11/15/zL2pQ8O3Xbit617.png" alt="image-20211115201108794" /></p>
+<h2 id="53-中断处理过程"><a class="markdownIt-Anchor" href="#53-中断处理过程"></a> 5.3 中断处理过程</h2>
+<p>中断服务函数：</p>
+<p>void 函数名 interrupt n</p>
+<p><strong>【注意】</strong><br />
+1、中断服务函数既没有返回值，也没有调用参数；<br />
+2、中断服务函数只能由系统调用，不能被其他函数调用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E4%BA%94%E7%AB%A0/" data-id="ckw0pbgjg000dak4xagjr6h0u" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-第四章" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-15T11:00:27.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0/">第四章</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第四章-单片机的c51语言"><a class="markdownIt-Anchor" href="#第四章-单片机的c51语言"></a> 第四章 单片机的C51语言</h1>
+<h2 id="41-c51的程序结构"><a class="markdownIt-Anchor" href="#41-c51的程序结构"></a> 4.1 C51的程序结构</h2>
+<p>C51与标准C程序结构完全相同</p>
+<ol>
+<li>程序由函数组成（一个主函数，或一个主函数和若干自定义函数）</li>
+<li>利用预处理命令对变量或函数进行集中定义或说明</li>
+<li>函数和变量都需遵循先定义后使用的基本原则</li>
+<li>主函数中的所有语句执行完毕,则程序结束</li>
+</ol>
+<p><strong>举例：LED闪烁控制功能</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;reg51.h&gt;</span>			<span class="comment">//51单片机头文件</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">()</span></span>;				<span class="comment">//延时函数声明</span></span><br><span class="line">sbit p1_0=p1^<span class="number">0</span>;				<span class="comment">//输出端口定义</span></span><br><span class="line">main()&#123;						<span class="comment">//主函数</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;				<span class="comment">//无限循环体</span></span><br><span class="line">        p1_0=<span class="number">0</span>;				<span class="comment">//P1.0口=“0”，led亮</span></span><br><span class="line">        delay();			<span class="comment">//延时</span></span><br><span class="line">        p1_0=<span class="number">1</span>;				<span class="comment">//P1.0口=“1”，led灭</span></span><br><span class="line">        delay();			<span class="comment">//延时</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;			<span class="comment">//延时函数</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i;		<span class="comment">//字符型变量i定义</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">200</span>;i&gt;<span class="number">0</span>;i--);		<span class="comment">//循环延时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="42-c51的数据结构"><a class="markdownIt-Anchor" href="#42-c51的数据结构"></a> 4.2 C51的数据结构</h2>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0/" data-id="ckw0pbgjm000mak4x1bu538su" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-第一章算法概述" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/10/%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/" class="article-date">
+  <time class="post-time" datetime="2021-11-10T10:01:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">10</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/10/%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/">第一章算法概述</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章-算法概述"><a class="markdownIt-Anchor" href="#第一章-算法概述"></a> 第一章 算法概述</h1>
+<h2 id="11算法与程序"><a class="markdownIt-Anchor" href="#11算法与程序"></a> 1.1算法与程序</h2>
+<h3 id="111算法"><a class="markdownIt-Anchor" href="#111算法"></a> 1.1.1算法</h3>
+<p>算法：对特定问题求解步骤的一种描述，是指令的有限序列</p>
+<h3 id="112算法的性质"><a class="markdownIt-Anchor" href="#112算法的性质"></a> 1.1.2算法的性质</h3>
+<ul>
+<li>输入： 有外部提供的量作为算法的输入。</li>
+<li>输出： 算法产生至少一个量作为输出。</li>
+<li>确定性：组成算法的每条指令是清晰、无歧义的。</li>
+<li>有限性：算法中每条指令的执行次数是有限的，执行每条指令的时间也是有限的。</li>
+</ul>
+<h3 id="113程序"><a class="markdownIt-Anchor" href="#113程序"></a> 1.1.3程序</h3>
+<p>程序是算法用某种程序设计语言的具体实现</p>
+<p>程序可以不满足算法的性质（4），例如操作系统</p>
+<h3 id="114算法描述语言"><a class="markdownIt-Anchor" href="#114算法描述语言"></a> 1.1.4算法描述语言</h3>
+<p>自然语言、流程图、程序设计语言、伪代码</p>
+<h3 id="115问题的求解"><a class="markdownIt-Anchor" href="#115问题的求解"></a> 1.1.5问题的求解</h3>
+<p>1)问题的陈述<br />
+用科学规范的语言，对所求解的问题做准确的描述<br />
+2)建立数学模型<br />
+通过对问题的分析，找出其中的所有操作对象及操作对象之间的关系并用数学语言加以描述<br />
+3)算法设计<br />
+根据数学模型设计问题的计算机求解算法<br />
+4)算法的正确性证明<br />
+证明一个算法对一切合法输入均能在有限次计算后产生正确输出<br />
+5)算法的程序实现<br />
+将算法正确地编写成机器语言程序<br />
+6)算法分析<br />
+对执行该算法所消耗的计算机资源进行估算。</p>
+<h2 id="12算法复杂性分析"><a class="markdownIt-Anchor" href="#12算法复杂性分析"></a> 1.2算法复杂性分析</h2>
+<h3 id="121复杂性的计量"><a class="markdownIt-Anchor" href="#121复杂性的计量"></a> 1.2.1复杂性的计量</h3>
+<ul>
+<li>算法复杂性 = 算法所需要的计算机资源</li>
+<li>算法的时间复杂性T(n)</li>
+<li>算法的空间复杂性S(n)</li>
+<li>其中n是问题的规模（输入大小）</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/10/%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/" data-id="ckw0pbgja0007ak4x3alq1ox4" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-单片机汇编程序练习" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/06/%E5%8D%95%E7%89%87%E6%9C%BA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E7%BB%83%E4%B9%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-06T07:39:21.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/06/%E5%8D%95%E7%89%87%E6%9C%BA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E7%BB%83%E4%B9%A0/">单片机汇编程序练习</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>题目来源网络，练习使用,答案已省去ORG和END指令，实现内容不保证正确</strong></p>
+<p><strong>1、将30H~3FH的数放到50H~5FH地址去。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	MOV R0,#30h				#原数据地址赋给R0</span><br><span class="line">	MOV R1,#50H				#目标地址赋给R1</span><br><span class="line">L_LOOP:</span><br><span class="line">	MOV A,@R0				#将R0存的原地址存的数据赋给A</span><br><span class="line">	MOV @R1,A				#将上一步获得的数据赋给R1存的目标地址</span><br><span class="line">	INC R0					#原地址下一位</span><br><span class="line">	INC R1					#目标地址下一位</span><br><span class="line">	CJNE R0,#3FH,L_LOOP		#R0!=0x3F则跳转回LINE3，0x3F为原数据截止地址</span><br></pre></td></tr></table></figure>
+<p><strong>2、将以40H开始的连续的10个存储单元的数据放到50H开始的连续地址上</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	MOV R6,#10				#给R6赋值10用作计数</span><br><span class="line">	MOV R0,#40H				#原数据地址赋给R0</span><br><span class="line">	MOV R1,#50H				#目标地址赋给R1</span><br><span class="line">L_LOOP:</span><br><span class="line">	MOV A,@R0				#将R0存原地址的数据赋值给A</span><br><span class="line">	MOV @R1,A				#将上一步获得的数据赋值给R1存的目标地址</span><br><span class="line">	INC R0					#原地址下一位</span><br><span class="line">	INC R1					#目标地址下一位</span><br><span class="line">    DJNZ R6,L_LOOP			#R6减一操作，不等于0则跳转回LINE4继续循环</span><br></pre></td></tr></table></figure>
+<p><strong>3、计算1+2+3+···+99，求得和低位放入50H，高位放入51H</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">    MOV 50H,#00H			#目标低位地址清零</span><br><span class="line">    MOV 51H,#00H			#目标高位地址清零</span><br><span class="line">    MOV R6,#00H				#每一次加数存放位置</span><br><span class="line">L_LOOP:</span><br><span class="line">	MOV A,R6				#加数赋值给A</span><br><span class="line">	ADD A,#01				#A+1</span><br><span class="line">	DAA						#加法调整十六进制---&gt;十进制</span><br><span class="line">	MOV R6,A				#新的加数（+1操作后的）赋值给R6</span><br><span class="line">	MOV A,50H				#把低位和赋值给A</span><br><span class="line">	ADD A,R6				#低位相加</span><br><span class="line">	DAA						</span><br><span class="line">	MOV 50H,A				#将低位相加结果赋值给50H</span><br><span class="line">	CLR A					#A清零</span><br><span class="line">	ADDC A,51H				#高位相加并加进位</span><br><span class="line">	DAA	</span><br><span class="line">	MOV 51H,A				#结果赋给51H</span><br><span class="line">	CJNE R6,#99H,L_LOOP		#累加99次</span><br></pre></td></tr></table></figure>
+<p><strong>4、将ROM中自2000H单元起的100个数，按序移至片外RAM自2080H单元起的内存区间去</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	MOV DPTR,#2000H			#数据块首地址放入DPTR</span><br><span class="line">	MOV R1,#64H				#100个数计数</span><br><span class="line">	MOV R2,#0				#偏移量存在R2中</span><br><span class="line">LOOP:</span><br><span class="line">	MOV A,R2				#把偏移量赋给A</span><br><span class="line">	MOVC A,@A+DPTR			#读ROM中数据，地址为基础地址＋偏移量　A值为前者地址内的数据   ROM与A的数据传送只能用MOVC</span><br><span class="line">	MOV R3,A				#将获得的数据赋给R3</span><br><span class="line">	MOV A,#80H				#</span><br><span class="line">	ADD A,R2				#和上一句共同确定RAM的地址低位</span><br><span class="line">	MOV DPL,A				#低位地址存到DPL中（高位一样的不用额外赋值</span><br><span class="line">	MOV A,R3				#获取ROM中数据赋给A</span><br><span class="line">	MOVX @DPTR,A			#将A写给DPTR中存放地址的地方（这里已经在原２０００H基础上加了８０）</span><br><span class="line">	INC R2					#下一个数</span><br><span class="line">	MOV DPL,#0				#低位清零，等下一次循环重新赋值</span><br><span class="line">	DJNZ R1,LOOP			#R1每次-1，=0后循环停止</span><br></pre></td></tr></table></figure>
+<p><strong>5、编写程序将片外数据存储器地址为1000H~102FH的数据块，全部搬迁到片内RAM30H~5FH中，并将原数据块区域全部清零</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">START:</span><br><span class="line">	MOV DPTR,#1000H			#定位片外地址为1000H</span><br><span class="line">	MOV R0,#30H				#计数30H</span><br><span class="line">	MOV R1,#30H				#片内地址0x30</span><br><span class="line">LOOP:</span><br><span class="line">	MOVX A,@DPTR			#将DPTR存的地址中的数据赋给A</span><br><span class="line">	MOV @R1,A				#将读到的数据存到R1存的地址的地方</span><br><span class="line">	CLR A					#清空A</span><br><span class="line">	MOVX @DPTR,A			#清空原数据</span><br><span class="line">	INC DPTR				#下一位源数据</span><br><span class="line">	INC R1					#下一位目标地址</span><br><span class="line">	DJNZ R0,LOOP			#R0每次-1，=0后循环停止</span><br></pre></td></tr></table></figure>
+<p><strong>6、设有100个有符号数，连续存放在以2000H为首地址的片外数据存储器中，试编程序统计其中正数、负数和零的个数，统计的个数分别放在R0，R1、R2中。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">START:</span><br><span class="line">	CLR A					#清空A内的值</span><br><span class="line">	MOV R0,A				#清空R0</span><br><span class="line">	MOV R1,A				#清空R1</span><br><span class="line">	MOV R2,A				#清空R2</span><br><span class="line">	MOV DPTR,#2000H			#源数据地址赋给DPTR</span><br><span class="line">	MOV R3,#100				#计数100个数据</span><br><span class="line">LOOP:</span><br><span class="line">	MOVX A,@DPTR			#取数据赋值给A</span><br><span class="line">	JZ ZERO					#若A=0（即取得数据为0）则跳转到ZERO代码段（判断顺寻  0   -   +）</span><br><span class="line">	JB A.7,NEG				#判断数据最高位（即判断正负）最高位为1则跳转到NEG代码段</span><br><span class="line">	INC R0					#不是0，不是负数，则正数+1</span><br><span class="line">	SJMP LL					#跳转到LL代码段（对于当前地址已取得数判断完成）</span><br><span class="line">ZERO:</span><br><span class="line">	INC R2					#0个数+1</span><br><span class="line">	SJMP LL					</span><br><span class="line">NEG:</span><br><span class="line">	INC R1					#负数+1</span><br><span class="line">LL: </span><br><span class="line">	INC DPTR				#下一个数</span><br><span class="line">	DJNZ R3,LOOP			#每次R3-1，=0时退出循环</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/06/%E5%8D%95%E7%89%87%E6%9C%BA%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E7%BB%83%E4%B9%A0/" data-id="ckw0pbgj50003ak4x72wjhpya" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%A0%E9%A2%98/" rel="tag">习题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-问题O：无脑博士的试管们" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/06/%E9%97%AE%E9%A2%98O%EF%BC%9A%E6%97%A0%E8%84%91%E5%8D%9A%E5%A3%AB%E7%9A%84%E8%AF%95%E7%AE%A1%E4%BB%AC/" class="article-date">
+  <time class="post-time" datetime="2021-11-05T19:31:56.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/06/%E9%97%AE%E9%A2%98O%EF%BC%9A%E6%97%A0%E8%84%91%E5%8D%9A%E5%A3%AB%E7%9A%84%E8%AF%95%E7%AE%A1%E4%BB%AC/">问题O：无脑博士的试管们</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题o无脑博士的试管们"><a class="markdownIt-Anchor" href="#问题o无脑博士的试管们"></a> 问题O：无脑博士的试管们</h1>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>无脑博士有三个容量分别是 A,B,C 升的试管，A,B,C分别是三个从 1到 20的整数，最初，A 和 B 试管都是空的，而 C 试管是装满硫酸铜溶液的。有时，无脑博士把硫酸铜溶液从一个试管倒到另一个试管中，直到被灌试管装满或原试管空了。当然每一次灌注都是完全的。由于无脑博士天天这么折腾，早已熟练，溶液在倒的过程中不会有丢失。</p>
+<p>写一个程序去帮助无脑博士找出当 A 试管是空的时候，C 试管中硫酸铜溶液所剩量的所有可能性。</p>
+<h2 id="输入"><a class="markdownIt-Anchor" href="#输入"></a> 输入</h2>
+<p>多组测试用例，对于每组测试用例，输入包括一行，为空格分隔开的三个数，分别为整数 A,B,C。</p>
+<h2 id="输出"><a class="markdownIt-Anchor" href="#输出"></a> 输出</h2>
+<p>输出包括一行，升序地列出当 A 试管是空的时候，C 试管溶液所剩量的所有可能性。</p>
+<h2 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 5 10</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> A, B, C;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">30</span>][<span class="number">30</span>][<span class="number">30</span>];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (dp[a][b][c]) <span class="keyword">return</span>;</span><br><span class="line">	dp[a][b][c] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="number">0</span> == a) ans.<span class="built_in">push_back</span>(c);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (a &lt;= B - b) <span class="built_in">solve</span>(<span class="number">0</span>, a + b, c);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(a + b - B, B, c);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (b &lt;= A - a) <span class="built_in">solve</span>(a + b, <span class="number">0</span>, c);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(A, a + b - A, c);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (a &lt;= C - c) <span class="built_in">solve</span>(<span class="number">0</span>, b, a + c);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(a + c - C, b, C);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (c &lt;= A - a) <span class="built_in">solve</span>(a + c, b, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(A, b, a + c - A);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (b &lt;= C - c) <span class="built_in">solve</span>(a, <span class="number">0</span>, b + c);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(a, b + c - C, C);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (c &lt;= B - b) <span class="built_in">solve</span>(a, b + c, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">solve</span>(a, B, b + c - B);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;A, &amp;B, &amp;C) == <span class="number">3</span>) &#123;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(dp));</span><br><span class="line">		ans.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="built_in">solve</span>(<span class="number">0</span>, <span class="number">0</span>, C);</span><br><span class="line">		<span class="built_in">sort</span>(ans.<span class="built_in">begin</span>(), ans.<span class="built_in">end</span>());</span><br><span class="line">		<span class="keyword">int</span> len = ans.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d%c&quot;</span>, ans[i], i + <span class="number">1</span> == len ? <span class="string">&#x27;\n&#x27;</span> : <span class="string">&#x27; &#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/06/%E9%97%AE%E9%A2%98O%EF%BC%9A%E6%97%A0%E8%84%91%E5%8D%9A%E5%A3%AB%E7%9A%84%E8%AF%95%E7%AE%A1%E4%BB%AC/" data-id="ckw0pbgjy001pak4xaxf140xk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-问题N：组合运算式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/06/%E9%97%AE%E9%A2%98N%EF%BC%9A%E7%BB%84%E5%90%88%E8%BF%90%E7%AE%97%E5%BC%8F/" class="article-date">
+  <time class="post-time" datetime="2021-11-05T19:31:37.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/06/%E9%97%AE%E9%A2%98N%EF%BC%9A%E7%BB%84%E5%90%88%E8%BF%90%E7%AE%97%E5%BC%8F/">问题N：组合运算式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题n组合运算式"><a class="markdownIt-Anchor" href="#问题n组合运算式"></a> 问题N：组合运算式</h1>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>请考虑一个被空格分隔的，由1到N的整数组成的递增数列：1 2 3 …N。现在请在数列中插入表示加的“+”，或者表示减“-”，亦或者表示空白的“ ”(例如1-2 3就等于1-23)，来将每一对数字组合成一个表达式（第一个数字前无空格）。计算该表达式的结果并判断其值是否为0。请你写一个程序找出所有产生和为零的长度为N的数列。</p>
+<h2 id="输入"><a class="markdownIt-Anchor" href="#输入"></a> 输入</h2>
+<p>输入为一行，包含一个整数N，3≤N≤9。</p>
+<h2 id="输出"><a class="markdownIt-Anchor" href="#输出"></a> 输出</h2>
+<p>输出为所有在每对数字间插入“+”, “-”, 或 “ ”后能得到和为零的数列，并按照字典（ASCII码）序排列。</p>
+<h2 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1+2-3+4-5-6+7</span><br><span class="line">1+2-3-4+5+6-7</span><br><span class="line">1-2 3+4+5+6+7</span><br><span class="line">1-2 3-4 5+6 7</span><br><span class="line">1-2+3+4-5+6-7</span><br><span class="line">1-2-3-4-5+6+7</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> s[<span class="number">10</span>][<span class="number">2</span>], n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">judge</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">20</span>] = &#123; <span class="number">0</span> &#125;, k = <span class="number">1</span>, sum = <span class="number">0</span>;</span><br><span class="line">    a[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i][<span class="number">1</span>] == <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a[k] = s[i + <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">            k++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (s[i][<span class="number">1</span>] == <span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a[k] = -s[i + <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">            k++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[k - <span class="number">1</span>] &gt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                a[k - <span class="number">1</span>] = a[k - <span class="number">1</span>] * <span class="number">10</span> + s[i + <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                a[k - <span class="number">1</span>] = a[k - <span class="number">1</span>] * <span class="number">10</span> - s[i + <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (sum == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; s[i][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (i &lt; n) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i][<span class="number">1</span>] == <span class="number">1</span>)</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s[i][<span class="number">1</span>] == <span class="number">2</span>)</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;+&quot;</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s[i][<span class="number">1</span>] == <span class="number">3</span>)</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;-&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; s[n][<span class="number">0</span>] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kill</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a == n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">judge</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">print</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    s[a][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">kill</span>(a + <span class="number">1</span>);</span><br><span class="line">    s[a][<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">kill</span>(a + <span class="number">1</span>);</span><br><span class="line">    s[a][<span class="number">1</span>] = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">kill</span>(a + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        s[i][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        s[i][<span class="number">0</span>] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">kill</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/06/%E9%97%AE%E9%A2%98N%EF%BC%9A%E7%BB%84%E5%90%88%E8%BF%90%E7%AE%97%E5%BC%8F/" data-id="ckw0pbgjy001lak4x9dqo3gsg" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-问题M：八皇后问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/06/%E9%97%AE%E9%A2%98M%EF%BC%9A%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="post-time" datetime="2021-11-05T19:31:15.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/06/%E9%97%AE%E9%A2%98M%EF%BC%9A%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/">问题M：八皇后问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题m八皇后问题"><a class="markdownIt-Anchor" href="#问题m八皇后问题"></a> 问题M：八皇后问题</h1>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>努比亚和苏丹没有子女，所以他要从一些有集成资格的继承者中挑选一个出来继承王位。他希望这个继承者足够聪明，所以他准备了一个西洋棋盘，上面的每个格子中均有一个 1-99 的数字。他又准备了 8 个皇后棋子。</p>
+<p>8 皇后的规则就是不能有任何棋子同行或者同列或者同斜线，在满足这个规则的同时，王位继承者还需要让 8 个皇后所在的位置的数字的和是最大的。</p>
+<h2 id="输入"><a class="markdownIt-Anchor" href="#输入"></a> 输入</h2>
+<p>输入一个数字 k(k≤20)，代表棋盘的数量。</p>
+<p>接下来有 k 个棋盘，每个棋盘有 64 个数字，分成 8 行 8 列输入，具体可见样例，每一个数字均小于 100。</p>
+<h2 id="输出"><a class="markdownIt-Anchor" href="#输出"></a> 输出</h2>
+<p>每一个棋盘对应输出最大的数值， 一共输出 k行</p>
+<h2 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">1 2 3 4 5 6 7 8</span><br><span class="line">9 10 11 12 13 14 15 16</span><br><span class="line">17 18 19 20 21 22 23 24</span><br><span class="line">25 26 27 28 29 30 31 32</span><br><span class="line">33 34 35 36 37 38 39 40</span><br><span class="line">41 42 43 44 45 46 47 48</span><br><span class="line">48 50 51 52 53 54 55 56</span><br><span class="line">57 58 59 60 61 62 63 64</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">260</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(disable:4996)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> Max = <span class="number">1e2</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> lst[Max][Max];</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> Inf = <span class="number">1e8</span> + <span class="number">5</span>;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"><span class="keyword">int</span> sum;</span><br><span class="line"><span class="keyword">int</span> cur[Max];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (h == <span class="number">9</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">8</span>; i++) sum += lst[i][cur[i]];</span><br><span class="line">		vec.<span class="built_in">push_back</span>(sum); </span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">8</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; h; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (i == cur[j] || i + h == cur[j] + j || h - i == j - cur[j])</span><br><span class="line">			&#123;</span><br><span class="line">				flag = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cur[h] = i;</span><br><span class="line">		<span class="keyword">if</span> (flag) <span class="built_in">dfs</span>(h + <span class="number">1</span>);</span><br><span class="line">		cur[h] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">while</span> (n--)</span><br><span class="line">	&#123;</span><br><span class="line">		vec.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">8</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">8</span>; j++) cin &gt;&gt; lst[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(<span class="number">1</span>);</span><br><span class="line">		<span class="built_in">sort</span>(vec.<span class="built_in">begin</span>(), vec.<span class="built_in">end</span>(), greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">		cout &lt;&lt; vec[<span class="number">0</span>] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/06/%E9%97%AE%E9%A2%98M%EF%BC%9A%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" data-id="ckw0pbgjw001iak4xa7uh5r75" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-问题J：区间第K小" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/06/%E9%97%AE%E9%A2%98J%EF%BC%9A%E5%8C%BA%E9%97%B4%E7%AC%ACK%E5%B0%8F/" class="article-date">
+  <time class="post-time" datetime="2021-11-05T19:31:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/06/%E9%97%AE%E9%A2%98J%EF%BC%9A%E5%8C%BA%E9%97%B4%E7%AC%ACK%E5%B0%8F/">问题J：区间第K小</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题j区间第k小"><a class="markdownIt-Anchor" href="#问题j区间第k小"></a> 问题J：区间第K小</h1>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>花花上算法课又偷偷摸鱼。她今天刚学会如何求解区间第k小的数，但是感觉没什么意思。于是她将题目稍稍改动了一下：对于一个长度为n的数列a来说，一共有n*(n+1)/2个子区间，对于数列a的每一个子区间，如果这个子区间的长度小于k，我们不管它，否则把该子区间的第k小的数加入新数列b（初始为空）。花花并不关心数列b里面的元素是什么，她只想知道新数列b中第k小的元素是多少。</p>
+<p>例如，一个长度为4的数列a={5,3,4,9}，当k取3时只有三个子区间长度是&gt;=3的：{5,3,4},{3,4,9}和{5,3,4,9}。分别提取各自的第3小的数加入b数列得到{5,9,5},其中第3小的数为9。</p>
+<h2 id="输入"><a class="markdownIt-Anchor" href="#输入"></a> 输入</h2>
+<p>第一行两个数n，k（1&lt;=n, k&lt;=1e5)意义见题目描述</p>
+<p>第二行n个数表示数列a中的元素ai。(1&lt;=ai&lt;=1e9)</p>
+<p>数据保证数列b中的元素个数不少于k个</p>
+<h2 id="输出"><a class="markdownIt-Anchor" href="#输出"></a> 输出</h2>
+<p>输出一个数，表示数列b中的第k小的数</p>
+<h2 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4 3</span><br><span class="line">5 3 4 9</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100005</span>;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="keyword">int</span> n, k;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">max_position</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">-1</span>, num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (r &lt; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt; k)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[r + <span class="number">1</span>] &lt;= x)num++;</span><br><span class="line">            r++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            result += n - r;</span><br><span class="line">            <span class="keyword">if</span> (a[l] &lt;= x)num--;</span><br><span class="line">            l++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">int</span>* b = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">        b[i] = a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(b, b + n);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">unique</span>(b, b + n) - b;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = len - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="built_in">max_position</span>(b[mid]);</span><br><span class="line">        <span class="keyword">if</span> (ret &gt;= k)</span><br><span class="line">        &#123;</span><br><span class="line">            ans = b[mid];</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/06/%E9%97%AE%E9%A2%98J%EF%BC%9A%E5%8C%BA%E9%97%B4%E7%AC%ACK%E5%B0%8F/" data-id="ckw0pbgjw001eak4x3ema1m0a" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">next &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">┭┮﹏┭┮</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>主题链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+		  <script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard.min.js"></script>
+		<script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard-use.js"></script> 
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 叁墨<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

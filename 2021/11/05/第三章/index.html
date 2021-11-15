@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第三章——单片机的汇编语言于程序设计 | ┭┮﹏┭┮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第三章  3.1汇编语言概述 汇编语言（Assembly Language）——用助记(字)符代替操作码，用地址符号代替地址码的一种面向机器的程序设计语言 汇编语言优点——代码精炼、执行速度快，但不便于编写较复杂的程序； 汇编程序处理过程——输入源程序→检查语法正确性（如有语法错误，输出错误信息）→翻译成二进制目标程序。  3.1.1汇编语言指令格式 一条汇编语言指令中最多包含4个区段，其一般格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三章——单片机的汇编语言于程序设计">
+<meta property="og:url" content="http://lkbby.github.io/2021/11/05/%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
+<meta property="og:site_name" content="┭┮﹏┭┮">
+<meta property="og:description" content="第三章  3.1汇编语言概述 汇编语言（Assembly Language）——用助记(字)符代替操作码，用地址符号代替地址码的一种面向机器的程序设计语言 汇编语言优点——代码精炼、执行速度快，但不便于编写较复杂的程序； 汇编程序处理过程——输入源程序→检查语法正确性（如有语法错误，输出错误信息）→翻译成二进制目标程序。  3.1.1汇编语言指令格式 一条汇编语言指令中最多包含4个区段，其一般格">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/qm1VArnl9D7Ys5K.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/HilAFqk1cwpoWIU.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/j7yCniASO2Y8Dcq.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/Fsz7vTNr9MAyf5P.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/IOhRHiqDQFEjZxv.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/15/bSaigdP9r25WnDt.png">
+<meta property="article:published_time" content="2021-11-04T16:35:53.000Z">
+<meta property="article:modified_time" content="2021-11-15T10:58:24.969Z">
+<meta property="article:author" content="叁墨">
+<meta property="article:tag" content="复习">
+<meta property="article:tag" content="概念">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/11/15/qm1VArnl9D7Ys5K.png">
+  
+    <link rel="alternate" href="/atom.xml" title="┭┮﹏┭┮" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://i.loli.net/2021/11/03/HfJstrbNocMR12X.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+	   
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-第三章" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/05/%E7%AC%AC%E4%B8%89%E7%AB%A0/" class="article-date">
+  <time class="post-time" datetime="2021-11-04T16:35:53.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">05</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第三章——单片机的汇编语言于程序设计
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第三章"><a class="markdownIt-Anchor" href="#第三章"></a> 第三章</h1>
+<h2 id="31汇编语言概述"><a class="markdownIt-Anchor" href="#31汇编语言概述"></a> 3.1汇编语言概述</h2>
+<p><strong>汇编语言</strong>（Assembly Language）——用助记(字)符代替操作码，用地址符号代替地址码的一种面向机器的程序设计语言</p>
+<p><strong>汇编语言优点</strong>——代码精炼、执行速度快，但不便于编写较复杂的程序；</p>
+<p><strong>汇编程序处理过程</strong>——输入源程序→检查语法正确性（如有语法错误，输出错误信息）→翻译成二进制目标程序。</p>
+<h3 id="311汇编语言指令格式"><a class="markdownIt-Anchor" href="#311汇编语言指令格式"></a> 3.1.1汇编语言指令格式</h3>
+<p>一条汇编语言指令中最多包含4个区段，其一般格式为：</p>
+<p>​      [标号:]	操作码	[操作数]	[;注释]</p>
+<p>标号代表当前指令的首字节在存储器单元中的存放地址（便于引用，可省略） ；<br />
+标号由用户定义的1～6个字符组成，以英文字母开始（不区分大小写 ）, 英文冒号结尾。</p>
+<p>操作码是指令要操作的动作，由标准助记字符组成；<br />
+51单片机共有42种操作码，不区分大小写。</p>
+<p>操作数是指令要操作的对象（如地址，寄存器，常数等）；<br />
+操作数可以是3个、2个、1个或没有操作数；<br />
+操作数大于1时，操作数之间用<strong>英文逗号</strong>隔开，不分大小写。</p>
+<p>注释是对指令的解释或说明，用以提高程序的可读性；<br />
+以<strong>英文分号</strong>开始，无需结束符号；<br />
+可用任何文字描述（不会形成机器码，可以省略）。</p>
+<h3 id="312描述操作数的简记符号"><a class="markdownIt-Anchor" href="#312描述操作数的简记符号"></a> 3.1.2描述操作数的简记符号</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">#data(16)</th>
+<th>8（16）位的立即数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>Rn</strong></td>
+<td><strong>R0~R7中某个寄存器（n=0~7）</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Ri</strong></td>
+<td><strong>R0或R1工作寄存器（i=0~1）（在@符号之后）</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>direct</strong></td>
+<td><strong>128B范围内某个RAM的具体地址或SFR的名称</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>addr16（11）</strong></td>
+<td><strong>64（2）KB范围内某个RAM或ROM的具体地址</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>rel</strong></td>
+<td><strong>256B范围内某个RAM或ROM的偏移量</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>bit</strong></td>
+<td><strong>代表RAM或SFR中某个位单元的具体地址</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>/</strong></td>
+<td><strong>随后的位状态取反</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>$</strong></td>
+<td><strong>当前指令地址</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>@</strong></td>
+<td><strong>以寄存器中的数据作为地址</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="313寻址方式"><a class="markdownIt-Anchor" href="#313寻址方式"></a> 3.1.3寻址方式</h3>
+<p>直接寻址、寄存器寻址、寄存器间接寻址、立即寻址、位寻址、相对寻址</p>
+<h2 id="32指令系统简介"><a class="markdownIt-Anchor" href="#32指令系统简介"></a> 3.2指令系统简介</h2>
+<h3 id="321数据传送与交换类指令"><a class="markdownIt-Anchor" href="#321数据传送与交换类指令"></a> 3.2.1数据传送与交换类指令</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MOV								;用于访问片内RAM</span><br><span class="line">MOVX							;用于访问片外RAM</span><br><span class="line">MOVC							;用于访问程序存储器</span><br><span class="line">XCH								;用于字节交换</span><br><span class="line">XCHD							;用于字节交换</span><br><span class="line">SWAP							;用于A内半字节交换</span><br><span class="line">PUSH							;用于堆栈操作		</span><br><span class="line">POP								;用于堆栈操作</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2021/11/15/qm1VArnl9D7Ys5K.png" alt="image-20211115184155611" /></p>
+<p><strong>基本规律：</strong></p>
+<ul>
+<li>立即数和ROM地址只能作为源操作数（单向箭头）</li>
+<li>内外ROM与A的数据传送只能用MOVC操作码助记符</li>
+<li>片外RAM与A的数据传送只能用MOVX操作码助记符</li>
+<li>PUSH、POP、SWAP只有1个操作数（弧线箭头）</li>
+<li>位数据传送只能在C（即Cy标志位）与bit间进行</li>
+</ul>
+<h3 id="322算术运算类指令"><a class="markdownIt-Anchor" href="#322算术运算类指令"></a> 3.2.2算术运算类指令</h3>
+<p>——以实现加、减、乘、除和增减1等运算为目的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ADD								;用于不带进位加法</span><br><span class="line">ADDC							;用于带进位加法</span><br><span class="line">SUBB							;用于带借位减法</span><br><span class="line">INC								;加1		</span><br><span class="line">DEC								;减1</span><br><span class="line">MUL								;用于乘法</span><br><span class="line">DIV								;用于除法</span><br><span class="line">DA								;用于十进制加法调整</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2021/11/15/HilAFqk1cwpoWIU.png" alt="image-20211115184518304" /></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>除加1和减1外，都需以累加器A为目的操作数</li>
+<li>一般都会影响PSW中的CY、AC、OV和P四个标志位</li>
+</ul>
+<p><img src="https://i.loli.net/2021/11/15/j7yCniASO2Y8Dcq.png" alt="image-20211115184603972" /></p>
+<h3 id="323逻辑运算及移位类指令"><a class="markdownIt-Anchor" href="#323逻辑运算及移位类指令"></a> 3.2.3逻辑运算及移位类指令</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ANL								;用于逻辑与运算</span><br><span class="line">ORL								;用于逻辑或运算</span><br><span class="line">XRL								;用于逻辑异或运算</span><br><span class="line">SETB							;置1</span><br><span class="line">CLR								;清0</span><br><span class="line">CPL								;用于取反</span><br><span class="line">RL								;用于循环左移</span><br><span class="line">RR								;用于循环右移</span><br><span class="line">RLC								;用于带C循环左移</span><br><span class="line">RRC								;用于带C循环右移</span><br></pre></td></tr></table></figure>
+<p>其中：循环移位指令的四种移位关系</p>
+<p><img src="https://i.loli.net/2021/11/15/Fsz7vTNr9MAyf5P.png" alt="image-20211115184954130" /></p>
+<p>功能：对累加器A进行循环移位操作</p>
+<p>特点：</p>
+<p>只能针对A进行操作</p>
+<p>左移1位相当于乘2，右移1位相当于除以2</p>
+<p><strong>规律：</strong></p>
+<p>字节运算以A为目的操作数（#data与direct的运算除外），位运算以C为目的操作数。</p>
+<h3 id="324控制转移类指令"><a class="markdownIt-Anchor" href="#324控制转移类指令"></a> 3.2.4控制转移类指令</h3>
+<p>——改变程序计数器PC值，进而改变程序的运行流向</p>
+<p>AJMP、SJMP、LJMP、JMP用于无条件转移<br />
+ACALL和LCALL用于子程序调用<br />
+RET和RETI用于子程序和中断返回<br />
+JZ、JNZ、CJNE和DJNZ用于字节条件转移<br />
+JC、JNC、JB、JNB和JBC用于位条件转移<br />
+NOP用于空操作</p>
+<h3 id="325伪指令"><a class="markdownIt-Anchor" href="#325伪指令"></a> 3.2.5伪指令</h3>
+<p>常用的伪指令：</p>
+<p><img src="https://i.loli.net/2021/11/15/IOhRHiqDQFEjZxv.png" alt="image-20211115185551496" /></p>
+<h2 id="33汇编语言的编程方法"><a class="markdownIt-Anchor" href="#33汇编语言的编程方法"></a> 3.3汇编语言的编程方法</h2>
+<ol>
+<li>确定编程思路</li>
+<li>画程序流程图</li>
+<li>编写汇编程序</li>
+<li>程序编译调试</li>
+</ol>
+<p>流程图：</p>
+<p><img src="https://i.loli.net/2021/11/15/bSaigdP9r25WnDt.png" alt="image-20211115185722866" /></p>
+<h2 id="34小结"><a class="markdownIt-Anchor" href="#34小结"></a> 3.4小结</h2>
+<ol>
+<li>51 单片机汇编语言指令最多包含4个区段，其一般格式为： [标号:]  操作码  [操作数]  [;注释]</li>
+<li>51单片机的指令系统分为数据传送与交换指令、算术运算指令、逻辑运算指令和控制转移指令等4大类型，共111条</li>
+<li>51单片机汇编语言具有直接寻址、寄存器寻址、寄存器间接寻址、立即寻址、变址寻址、位寻址和相对寻址等7种寻址方式</li>
+<li>伪指令属于非执行指令，用于对汇编过程提供必要辅助信息，汇编后不会产生机器码</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lkbby.github.io/2021/11/05/%E7%AC%AC%E4%B8%89%E7%AB%A0/" data-id="ckw0pbgjc0009ak4xcq8kd2g2" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/11/06/%E9%97%AE%E9%A2%98A%EF%BC%9A%E5%8D%95%E8%AF%8D%E6%8E%92%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          问题A：单词排序
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">第二章——MCS单片机结构及原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">┭┮﹏┭┮</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2021/11/03/XnzlGg86CObJipq.jpg">
+    <h2 class="author">叁墨</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>主题链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+		  <script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard.min.js"></script>
+		<script type="text/javascript" src="/myblg/themes/shana/source/js/clipboard-use.js"></script> 
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2020 - 2021 叁墨<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

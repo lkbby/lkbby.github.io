@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   
-  <title>第七章 | ┭┮﹏┭┮</title>
+  <title>第七章——单片机的串行通信技术 | ┭┮﹏┭┮</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="第七章	单片机的串行通信技术  7.1 串行通信概述  7.1.1 并行通信和串行通信 1、并行方式 数据的各位同时发送或同时接收  特点： 传送速度快，但需要多根传输线，故一般只在近距离通信中使用 2、串行方式 数据的各位依次逐位发送或接收  特点： 传输速度慢，但因只需较少的传输线，故适合于远距离通信 3、传输形式 按照传输的数据流向分： 单工制式：通信线的一端为发送器（TXD），一端为接收">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第七章">
+<meta property="og:title" content="第七章——单片机的串行通信技术">
 <meta property="og:url" content="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/index.html">
 <meta property="og:site_name" content="┭┮﹏┭┮">
 <meta property="og:description" content="第七章	单片机的串行通信技术  7.1 串行通信概述  7.1.1 并行通信和串行通信 1、并行方式 数据的各位同时发送或同时接收  特点： 传送速度快，但需要多根传输线，故一般只在近距离通信中使用 2、串行方式 数据的各位依次逐位发送或接收  特点： 传输速度慢，但因只需较少的传输线，故适合于远距离通信 3、传输形式 按照传输的数据流向分： 单工制式：通信线的一端为发送器（TXD），一端为接收">
@@ -17,8 +17,19 @@
 <meta property="og:image" content="https://i.loli.net/2021/11/15/1G5aWRYvNU9LgxT.png">
 <meta property="og:image" content="https://i.loli.net/2021/11/15/ArcifeXGQmR8n1N.png">
 <meta property="og:image" content="c:%5CUsers%5C86151%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211115211826870.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/8XimuEZgtUvHy3p.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/yLD8FuABebMCZP3.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/R4LskdPhUtMzV6v.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/SUtHi5jno3mYzDA.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/jdJVMwOtsa2HPCX.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/zt9H4UXLSQjW3bN.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/tkD4wCe51nSJlOZ.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/rKkbCeUHJxORcW8.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/APJvDMZd8YQf32T.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/o5hfBDAr3nVswPX.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/16/jmcYpLVOaCxr1Z3.png">
 <meta property="article:published_time" content="2021-11-15T11:51:02.000Z">
-<meta property="article:modified_time" content="2021-11-15T13:23:30.549Z">
+<meta property="article:modified_time" content="2021-11-15T22:25:58.721Z">
 <meta property="article:author" content="叁墨">
 <meta property="article:tag" content="复习">
 <meta property="article:tag" content="概念">
@@ -99,7 +110,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      第七章
+      第七章——单片机的串行通信技术
     </h1>
   
 
@@ -175,13 +186,71 @@
 <p>**RXD（P3.0）和TXD（P3.1）**用于串行信号或时钟信号的传入或传出。</p>
 <h3 id="722-串行口控制寄存器"><a class="markdownIt-Anchor" href="#722-串行口控制寄存器"></a> 7.2.2 串行口控制寄存器</h3>
 <p><strong>1、串行数据缓冲器，SBUF</strong></p>
+<p>在物理上有两个SBUF：一个用于发送，另一个用于接收。在逻辑上只有一个SBUF（99H）。可根据用法区分功能</p>
+<p><img src="https://i.loli.net/2021/11/16/8XimuEZgtUvHy3p.png" alt="image-20211116055951317" /></p>
 <p><strong>2、串口控制寄存器，SCON</strong></p>
+<p><img src="https://i.loli.net/2021/11/16/yLD8FuABebMCZP3.png" alt="image-20211116060119613" /></p>
+<p>SM2、TB8、RB8主要用于多机通讯</p>
 <p><strong>3、电源控制寄存器，PCON</strong></p>
+<p><img src="https://i.loli.net/2021/11/16/R4LskdPhUtMzV6v.png" alt="image-20211116060138238" /></p>
+<p>SMOD可使由定时器产生的通信时钟速率加倍</p>
+<h2 id="73-串行工作方式0及其应用"><a class="markdownIt-Anchor" href="#73-串行工作方式0及其应用"></a> 7.3 串行工作方式0及其应用</h2>
+<p>方式0——8位同步移位寄存器方式</p>
+<p>以8位数据为一帧，不设起始位和停止位，先发送或接收最低位**。**</p>
+<p>数据传输波特率固定为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mi>f</mi><mi>o</mi><mi>s</mi><mi>c</mi></mrow><mn>12</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{fosc}{12}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.277216em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>由RXD引脚输入或输出数据</p>
+<p>TXD引脚输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mi>f</mi><mi>o</mi><mi>s</mi><mi>c</mi></mrow><mn>12</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{fosc}{12}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.277216em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>时钟信号</p>
+<p><img src="https://i.loli.net/2021/11/16/SUtHi5jno3mYzDA.png" alt="image-20211116060804534" /></p>
+<p><strong>方式0主要用于串并转换</strong> ——I/O口数量不足时，可通过串口方式0进行扩展，但需要相应的芯片配合</p>
+<h2 id="74-串行工作方式1及其应用"><a class="markdownIt-Anchor" href="#74-串行工作方式1及其应用"></a> 7.4 串行工作方式1及其应用</h2>
+<p>方式1—— 10位数据异步通讯方式</p>
+<p>一帧信息 = 1个起始位(0)+8位数据位+1个停止位(1)</p>
+<p>指定T1为波特率时钟发生器, 一般选择定时方式2</p>
+<p>发送数据由TXD（P3.1）输出，接收数据由RXD（P3.0）输入，初始化（RI、TI、REN、SM0、SM1）</p>
+<p><img src="https://i.loli.net/2021/11/16/jdJVMwOtsa2HPCX.png" alt="image-20211116060923565" /></p>
+<p><strong>方式1主要用于点对点（两机）通信</strong></p>
+<p><img src="https://i.loli.net/2021/11/16/zt9H4UXLSQjW3bN.png" alt="image-20211116061015326" /></p>
+<p>异步通信编程初始化：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SCON=<span class="number">0101</span> <span class="number">0000B</span>;   	<span class="comment">//串口方式1，允许接收，TI和RI清零</span></span><br><span class="line">PCON=<span class="number">1000</span> <span class="number">0000B</span>; 	 <span class="comment">//波特率加倍（×2）</span></span><br><span class="line">TMOD=<span class="number">0010</span> <span class="number">0000B</span>;  	<span class="comment">//T1设为定时方式2</span></span><br><span class="line">TH1=TL1=<span class="number">0xfd</span>;     	<span class="comment">//T1计数初值,19.2k波特率</span></span><br><span class="line">IE=<span class="number">1001</span> <span class="number">0000B</span>;		<span class="comment">//中断使能（开总中断，开串口中断）</span></span><br><span class="line">TR1=<span class="number">1</span>;         		<span class="comment">//启动T1</span></span><br></pre></td></tr></table></figure>
+<h2 id="75-串行工作方式2及其应用"><a class="markdownIt-Anchor" href="#75-串行工作方式2及其应用"></a> 7.5 串行工作方式2及其应用</h2>
+<p>方式2——11位数据异步通信方式</p>
+<p>一帧信息 = 1个起始位(0)+8位数据位+ 1个可编程位§ +1个停止位(1) 。</p>
+<p>方式2的波特率为固数值：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><msup><mn>2</mn><mrow><mi>S</mi><mi>M</mi><mi>O</mi><mi>D</mi></mrow></msup><mn>64</mn></mfrac><mo>×</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">\frac{2^{SMOD}}{64}×f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3823649999999998em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0373649999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9190928571428572em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">O</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span><sub>osc</sub> ,即，通信时钟初始化仅需要设置PCON，与T1无关</p>
+<p><img src="https://i.loli.net/2021/11/16/tkD4wCe51nSJlOZ.png" alt="image-20211116061719651" /></p>
+<p>可编程位的作用——用于奇偶校验或多机通信标识。</p>
+<p>发送时由硬件方式将TB8作为可编程位插入数据帧中；<br />
+接受时由硬件方式将数据帧的可编程位存入RB8中。</p>
+<p><strong>奇偶校验原理：</strong></p>
+<p>例如，发送数据为0x45（0100 0101B），其奇偶校验值P=1（奇数个1），将P→TB8，发送时可连同数据0x45一起发出。接收端可自动将其可编程位放入RB8中。</p>
+<p><img src="https://i.loli.net/2021/11/16/rKkbCeUHJxORcW8.png" alt="image-20211116061913491" /></p>
+<p>只要将待测数据送入Acc即可由硬件求出奇偶校验值（使P赋值），再与RB8进行比较便可判断收发过程是否有误。</p>
+<h2 id="76-串行工作方式3及其应用"><a class="markdownIt-Anchor" href="#76-串行工作方式3及其应用"></a> 7.6 串行工作方式3及其应用</h2>
+<p>方式3——11位数据异步通信方式</p>
+<p>方式3的波特率为可变的（其余方面皆与方式2相同）</p>
+<p><img src="https://i.loli.net/2021/11/16/APJvDMZd8YQf32T.png" alt="image-20211116062018293" /></p>
+<p>方式3主要用于错误校验或主从式通信系统的场合</p>
+<p><img src="https://i.loli.net/2021/11/16/o5hfBDAr3nVswPX.png" alt="image-20211116062052397" /></p>
+<p>主机与各从机之间能实现双向通信，而各从机之间不能直接通信，只能通过主机才能沟通。</p>
+<p><strong>多机通信过程：</strong></p>
+<ol>
+<li>主机向所有从机发送包含n#从机地址的地址帧</li>
+<li>所有从机都核查该地址帧,只有n#从机修改本机SM2</li>
+<li>主机发送数据帧, 只有n#从机能够接收到数据信息。</li>
+</ol>
+<p><strong>关键：</strong><br />
+主机第1次发出的信息要能被所有的从机响应，而第2次的信息只能被n#从机所响应——多机通信控制位SM2对接收中断请求的管理功能。</p>
+<p><strong>多机通信原理</strong>：</p>
+<p><img src="https://i.loli.net/2021/11/16/jmcYpLVOaCxr1Z3.png" alt="image-20211116062217459" /></p>
+<ol>
+<li>所有从机都先使自己的SM2=1，而主机在发送的地址帧信息时先使TB8=1。这样，所有从机都能产生接收中断请求，并收到主机发来的地址信息；</li>
+<li>各从机将主机发来的地址与本机地址编号相比较。若与本机相符（即命中） ，则该从机使自己的SM2=0，其余从机仍旧保持SM2=1；</li>
+<li>主机接着发送TB8=0的数据帧信息。此时只有命中机（SM2=0）有中断请求，其它从机均无响应。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/" data-id="ckw0pbgjb0008ak4xhmf4eylk" class="article-share-link">分享</a>
+      <a data-url="http://lkbby.github.io/2021/11/15/%E7%AC%AC%E4%B8%83%E7%AB%A0/" data-id="ckw18kqzp0008ok4x6j9n79iz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li></ul>
@@ -195,7 +264,7 @@
   
     <a href="/2021/11/15/%E7%AC%AC%E5%85%AD%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">第六章</div>
+      <div class="article-nav-title">第六章——单片机的定时器/计数器</div>
     </a>
   
 </nav>
